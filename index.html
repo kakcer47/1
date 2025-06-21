@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Децентрализованная социальная сеть на базе Nostr" />
+    <meta name="theme-color" content="#3b82f6" />
+    
+    <!-- Telegram WebApp -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- Preconnect для оптимизации -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <title>Nostr Social Feed</title>
+    
+    <!-- Стили для предотвращения FOUC -->
+    <style>
+      html {
+        margin: 0;
+        padding: 0;
+        background-color: #f9fafb;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f9fafb;
+      }
+      
+      /* Скрываем контент до загрузки JS */
+      #root {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f9fafb;
+      }
+      
+      /* Показываем после загрузки */
+      html.js-enabled #root {
+        display: block;
+      }
+      
+      /* Базовый спиннер */
+      .initial-loader {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #e5e7eb;
+        border-top: 4px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Скрываем loader после загрузки JS */
+      html.js-enabled .initial-loader {
+        display: none;
+      }
+      
+      /* CSS переменные для viewport */
+      :root {
+        --vh: 1vh;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-IqAlg6mq.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-C6Ba5J37.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-zustand-CyDtV0kx.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-ui-HwjcNjrH.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-nostr-CMmJ9SWd.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-Bp9Vxuvd.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Начальный loader -->
+      <div class="initial-loader"></div>
+    </div>
+  </body>
+</html>
