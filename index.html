@@ -1,88 +1,108 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Децентрализованная социальная сеть на базе Nostr" />
-    <meta name="theme-color" content="#3b82f6" />
-    
-    <!-- Telegram WebApp -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    
-    <!-- Preconnect для оптимизации -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <title>Nostr Social Feed</title>
-    
-    <!-- Стили для предотвращения FOUC -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Look</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      html {
-        margin: 0;
-        padding: 0;
-        background-color: #f9fafb;
-      }
-      
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        background-color: #f9fafb;
-      }
-      
-      /* Скрываем контент до загрузки JS */
-      #root {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #f9fafb;
-      }
-      
-      /* Показываем после загрузки */
-      html.js-enabled #root {
-        display: block;
-      }
-      
-      /* Базовый спиннер */
-      .initial-loader {
-        width: 40px;
-        height: 40px;
-        border: 4px solid #e5e7eb;
-        border-top: 4px solid #3b82f6;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-      
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      /* Скрываем loader после загрузки JS */
-      html.js-enabled .initial-loader {
-        display: none;
-      }
-      
-      /* CSS переменные для viewport */
-      :root {
-        --vh: 1vh;
-      }
+        body {
+            font-family: 'Rubik', sans-serif;
+        }
     </style>
-    <script type="module" crossorigin src="/assets/index-IqAlg6mq.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-react-C6Ba5J37.js">
-    <link rel="modulepreload" crossorigin href="/assets/vendor-zustand-CyDtV0kx.js">
-    <link rel="modulepreload" crossorigin href="/assets/vendor-ui-HwjcNjrH.js">
-    <link rel="modulepreload" crossorigin href="/assets/vendor-nostr-CMmJ9SWd.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bp9Vxuvd.css">
-  </head>
-  <body>
-    <div id="root">
-      <!-- Начальный loader -->
-      <div class="initial-loader"></div>
+</head>
+<body class="bg-gray-100">
+    <div class="main-page p-6">
+        <h1 class="text-2xl font-bold text-left mb-6">Your Look</h1>
+        <div class="space-y-2">
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Брюки, Шорты">Брюки, Шорты</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Джинсы">Джинсы</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Юбка">Юбка</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Платье, Блуза">Платье, Блуза</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Купальники, Нижнее белье">Купальники, Нижнее белье</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Спортивная одежда">Спортивная одежда</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Домашний текстиль">Домашний текстиль</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Футболки, Майки, Поло">Футболки, Майки, Поло</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Джемпер, Свитер, Худи">Джемпер, Свитер, Худи</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Пиджак мужской">Пиджак мужской</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Жакет женский">Жакет женский</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Парка, Пальто, Плащ">Парка, Пальто, Плащ</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Пуховик">Пуховик</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Горнолыжная, мембранная одежда">Горнолыжная, мембранная одежда</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Дубленка">Дубленка</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Кожаная куртка">Кожаная куртка</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Мотоэкипировка">Мотоэкипировка</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Меховые изделия">Меховые изделия</button>
+            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Кожаный ремень">Кожаный ремень</button>
+        </div>
     </div>
-  </body>
+
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none z-[110]" id="modalOverlay">
+        <div class="modal fixed bottom-0 left-0 right-0 bg-gray-100 rounded-t-2xl transform translate-y-full transition-transform duration-400 ease-[cubic-bezier(0.25,0.8,0.25,1)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full max-h-[80vh] z-[120] flex flex-col" id="modal">
+            <div class="modal-header flex justify-between items-center p-4 border-b border-gray-300">
+                <h2 class="modal-title text-lg font-semibold" id="modalTitle"></h2>
+                <button class="modal-close-btn w-9 h-9 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors text-xl font-bold" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-content flex-1 overflow-y-auto p-6" id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const categoryButtons = document.querySelectorAll('.category-button');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const modalClose = document.getElementById('modalClose');
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.getAttribute('data-category');
+                modalTitle.textContent = category;
+                loadServices(category);
+                modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    modal.classList.remove('translate-y-full');
+                }, 10);
+            });
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        function closeModal() {
+            modal.classList.add('translate-y-full');
+            setTimeout(() => {
+                modalOverlay.classList.add('opacity-0', 'pointer-events-none');
+            }, 400);
+        }
+
+        async function loadServices(category) {
+            try {
+                const response = await fetch(`./${category}.json`);
+                const data = await response.json();
+                modalContent.innerHTML = '';
+                data.services.forEach(service => {
+                    const serviceButton = document.createElement('div');
+                    serviceButton.className = 'w-full p-3 text-left bg-transparent border-none';
+                    serviceButton.textContent = service.name;
+                    modalContent.appendChild(serviceButton);
+
+                    service.subServices.forEach(subService => {
+                        const subServiceButton = document.createElement('div');
+                        subServiceButton.className = 'w-full p-3 mt-1 bg-gray-200 rounded-lg';
+                        subServiceButton.textContent = `${subService.name} - ${subService.price}`;
+                        modalContent.appendChild(subServiceButton);
+                    });
+                });
+            } catch (error) {
+                console.error('Ошибка загрузки услуг:', error);
+                modalContent.innerHTML = '<p>Ошибка загрузки данных</p>';
+            }
+        }
+    </script>
+</body>
 </html>
