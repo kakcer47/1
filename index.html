@@ -1,11 +1,11 @@
 <script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+        return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
         if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
             try {
                 var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
@@ -19,11 +19,11 @@
 
                 // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
                 var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                    row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
                 );
                 // Fallback
                 if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
+                    headerRowIndex = 0;
                 }
 
                 // Convert filtered JSON back to CSV
@@ -36,9 +36,11 @@
             }
         }
         return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+    }
+</script>
+<!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,16 +51,21 @@
         body {
             font-family: 'Rubik', sans-serif;
         }
+
         @media (min-width: 1024px) {
-            .main-page, .modal {
+
+            .main-page,
+            .modal {
                 width: 33.33%;
                 margin: 0 auto;
             }
+
             .modal-overlay {
                 display: flex;
                 justify-content: center;
                 align-items: flex-end;
             }
+
             .modal {
                 position: relative;
                 bottom: 0;
@@ -68,40 +75,89 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100">
     <div class="main-page p-6">
         <h1 class="text-2xl font-bold text-left mb-6">Your Look</h1>
         <div class="space-y-2">
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Брюки и Шорты">Брюки и Шорты</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Джинсы">Джинсы</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Юбка">Юбка</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Платье, Сарафан">Платье, Сарафан</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Свадебное платье">Свадебное платье</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Купальники, Нижнее белье">Купальники, Нижнее белье</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Спортивная одежда">Спортивная одежда</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Домашний текстиль">Домашний текстиль</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Рубашка, Блузка, Туника">Рубашка, Блузка, Туника</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Футболки, Майки, Поло">Футболки, Майки, Поло</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Джемпер, Свитер, Худи">Джемпер, Свитер, Худи</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Пиджак мужской">Пиджак мужской</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Жакет женский">Жакет женский</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Парка, Пальто, Плащ">Парка, Пальто, Плащ</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Пуховик">Пуховик</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Горнолыжная, мембранная одежда">Горнолыжная, мембранная одежда</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Дубленка">Дубленка</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Кожаная куртка">Кожаная куртка</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Кожаные - Брюки, Юбка, Платье">Кожаные - Брюки, Юбка, Платье</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Мотоэкипировка">Мотоэкипировка</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Меховые изделия">Меховые изделия</button>
-            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Кожаный ремень">Кожаный ремень</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Брюки и Шорты">Брюки и Шорты</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Джинсы">Джинсы</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Юбка">Юбка</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Платье, Сарафан">Платье, Сарафан</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Свадебное платье">Свадебное платье</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Купальники, Нижнее белье">Купальники, Нижнее белье</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Спортивная одежда">Спортивная одежда</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Домашний текстиль">Домашний текстиль</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Рубашка, Блузка, Туника">Рубашка, Блузка, Туника</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Футболки, Майки, Поло">Футболки, Майки, Поло</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Джемпер, Свитер, Худи">Джемпер, Свитер, Худи</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Пиджак мужской">Пиджак мужской</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Жакет женский">Жакет женский</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Парка, Пальто, Плащ">Парка, Пальто, Плащ</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Пуховик">Пуховик</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Горнолыжная, мембранная одежда">Горнолыжная, мембранная одежда</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Дубленка">Дубленка</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Кожаная куртка">Кожаная куртка</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Кожаные - Брюки, Юбка, Платье">Кожаные - Брюки, Юбка, Платье</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Мотоэкипировка">Мотоэкипировка</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Меховые изделия">Меховые изделия</button>
+            <button
+                class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
+                data-category="Кожаный ремень">Кожаный ремень</button>
         </div>
     </div>
 
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-500 pointer-events-none z-[110]" id="modalOverlay">
-        <div class="modal fixed bottom-0 bg-gray-100 rounded-t-2xl transform translate-y-full transition-transform duration-600 ease-[cubic-bezier(0.25,0.8,0.25,1)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full max-h-[80vh] z-[120] flex flex-col" id="modal">
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-500 pointer-events-none z-[110]"
+        id="modalOverlay">
+        <div class="modal fixed bottom-0 bg-gray-100 rounded-t-2xl transform translate-y-full transition-transform duration-600 ease-[cubic-bezier(0.25,0.8,0.25,1)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full max-h-[80vh] z-[120] flex flex-col"
+            id="modal">
             <div class="modal-header flex justify-between items-center p-4 border-b border-gray-300">
                 <h2 class="modal-title text-lg font-semibold" id="modalTitle"></h2>
-                <button class="modal-close-btn w-9 h-9 bg-[#eeedec] rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors text-xl font-bold" id="modalClose">×</button>
+                <button
+                    class="modal-close-btn w-9 h-9 bg-[#eeedec] rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors text-xl font-bold"
+                    id="modalClose">×</button>
             </div>
             <div class="modal-content flex-1 overflow-y-auto p-6 space-y-2" id="modalContent"></div>
         </div>
@@ -121,7 +177,7 @@
                 modalTitle.textContent = category;
                 loadServices(category);
                 modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
-                document.body.classList.add('overflow-hidden');
+                document.body.classList.add('overflow-hidden'); // Добавьте здесь
                 setTimeout(() => {
                     modal.classList.remove('translate-y-full');
                 }, 10);
@@ -137,7 +193,7 @@
             modal.classList.add('translate-y-full');
             setTimeout(() => {
                 modalOverlay.classList.add('opacity-0', 'pointer-events-none');
-                document.body.classList.remove('overflow-hidden');
+                document.body.classList.remove('overflow-hidden'); // Добавьте здесь
             }, 600);
         }
 
@@ -170,4 +226,5 @@
         }
     </script>
 </body>
+
 </html>
