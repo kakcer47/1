@@ -61,7 +61,7 @@
                 <h2 class="modal-title text-lg font-semibold" id="modalTitle"></h2>
                 <button class="modal-close-btn w-9 h-9 bg-[#eeedec] rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors text-xl font-bold" id="modalClose">×</button>
             </div>
-            <div class="modal-content flex-1 overflow-y-auto p-6 space-y-4" id="modalContent"></div>
+            <div class="modal-content flex-1 overflow-y-auto p-6 space-y-2" id="modalContent"></div>
         </div>
     </div>
 
@@ -116,7 +116,7 @@
                     });
 
                     const spacer = document.createElement('div');
-                    spacer.className = 'h-4';
+                    spacer.className = 'h-2';
                     modalContent.appendChild(spacer);
                 });
             } catch (error) {
