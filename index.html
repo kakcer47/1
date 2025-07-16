@@ -10,13 +10,19 @@
         body {
             font-family: 'Rubik', sans-serif;
         }
+        @media (min-width: 1024px) {
+            .main-page, .modal {
+                width: 33.33%;
+                margin: 0 auto;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100">
     <div class="main-page p-6">
         <h1 class="text-2xl font-bold text-left mb-6">Your Look</h1>
         <div class="space-y-2">
-            <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Брюки, Шорты">Брюки, Шорты</button>
+            <button class="category-button w-full bg-[#eeedec] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg" data-category="Брюки, Шорты">Брюки, Шорты</button>
             <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Джинсы">Джинсы</button>
             <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Юбка">Юбка</button>
             <button class="category-button w-full bg-gray-200 text-left p-3 hover:bg-gray-300 transition-colors" data-category="Платье, Блуза">Платье, Блуза</button>
@@ -38,47 +44,38 @@
         </div>
     </div>
 
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none z-[110]" id="modalOverlay">
-        <div class="modal fixed bottom-0 left-0 right-0 bg-gray-100 rounded-t-2xl transform translate-y-full transition-transform duration-400 ease-[cubic-bezier(0.25,0.8,0.25,1)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full max-h-[80vh] z-[120] flex flex-col" id="modal">
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-500 pointer-events-none z-[110]" id="modalOverlay">
+        <div class="modal fixed bottom-0 left-0 right-0 bg-gray-100 rounded-t-2xl transform translate-y-full transition-transform duration-600 ease-[cubic-bezier(0.25,0.8,0.25,1)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full max-h-[80vh] z-[120] flex flex-col" id="modal">
             <div class="modal-header flex justify-between items-center p-4 border-b border-gray-300">
                 <h2 class="modal-title text-lg font-semibold" id="modalTitle"></h2>
-                <button class="modal-close-btn w-9 h-9 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors text-xl font-bold" id="modalClose">&times;</button>
+                <button class="modal-close-btn w-9 h-9 bg-[#eeedec] rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors text-xl font-bold" id="modalClose">×</button>
             </div>
-            <div class="modal-content flex-1 overflow-y-auto p-6" id="modalContent"></div>
+            <div class="modal-content flex-1 overflow-y-auto p-6 space-y-4" id="modalContent"></div>
         </div>
     </div>
 
     <script>
-        const categoryButtons = document.querySelectorAll('.category-button');
         const modalOverlay = document.getElementById('modalOverlay');
         const modal = document.getElementById('modal');
+        const modalClose = document.getElementById('modalClose');
         const modalTitle = document.getElementById('modalTitle');
         const modalContent = document.getElementById('modalContent');
-        const modalClose = document.getElementById('modalClose');
+        const categoryButtons = document.querySelectorAll('.category-button');
 
         categoryButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const category = button.getAttribute('data-category');
                 modalTitle.textContent = category;
-                loadServices(category);
                 modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
-                setTimeout(() => {
-                    modal.classList.remove('translate-y-full');
-                }, 10);
+                modal.classList.remove('translate-y-full');
+                loadServices(category);
             });
         });
 
-        modalClose.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) closeModal();
-        });
-
-        function closeModal() {
+        modalClose.addEventListener('click', () => {
+            modalOverlay.classList.add('opacity-0', 'pointer-events-none');
             modal.classList.add('translate-y-full');
-            setTimeout(() => {
-                modalOverlay.classList.add('opacity-0', 'pointer-events-none');
-            }, 400);
-        }
+        });
 
         async function loadServices(category) {
             try {
@@ -93,10 +90,14 @@
 
                     service.subServices.forEach(subService => {
                         const subServiceButton = document.createElement('div');
-                        subServiceButton.className = 'w-full p-3 mt-1 bg-gray-200 rounded-lg';
+                        subServiceButton.className = 'w-full p-3 mt-1 bg-[#eeedec] rounded-lg';
                         subServiceButton.textContent = `${subService.name} - ${subService.price}`;
                         modalContent.appendChild(subServiceButton);
                     });
+
+                    const spacer = document.createElement('div');
+                    spacer.className = 'h-4';
+                    modalContent.appendChild(spacer);
                 });
             } catch (error) {
                 console.error('Ошибка загрузки услуг:', error);
