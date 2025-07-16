@@ -121,6 +121,7 @@
                 modalTitle.textContent = category;
                 loadServices(category);
                 modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.classList.add('overflow-hidden');
                 setTimeout(() => {
                     modal.classList.remove('translate-y-full');
                 }, 10);
@@ -136,6 +137,7 @@
             modal.classList.add('translate-y-full');
             setTimeout(() => {
                 modalOverlay.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('overflow-hidden');
             }, 600);
         }
 
