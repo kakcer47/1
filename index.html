@@ -151,6 +151,7 @@
 
         let orders = [];
         let currentOrderId = 1;
+        let isViewMode = false;
 
         function getMoscowDate() {
             const now = new Date();
@@ -163,18 +164,131 @@
         }
 
         function openModal() {
+            isViewMode = false;
             orderNumber.value = currentOrderId;
             orderDate.value = getMoscowDate();
             modalTitle.textContent = `Заказ №${currentOrderId}`;
+            resetFormToCreateMode();
             
-            // Показываем overlay
             modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
             document.body.style.overflow = 'hidden';
             
-            // Немного задержки для плавной анимации
             setTimeout(() => {
                 modal.classList.remove('translate-y-full');
             }, 50);
+        }
+
+        function openViewModal(order) {
+            isViewMode = true;
+            orderNumber.value = order.id;
+            orderDate.value = order.date;
+            modalTitle.textContent = `Просмотр заказа №${order.id}`;
+            
+            // Заполняем данные
+            fullName.value = order.fullName;
+            phone.value = order.phone;
+            paymentMethod.value = order.paymentMethod;
+            
+            // Заполняем услуги
+            servicesContainer.innerHTML = '';
+            order.services.forEach(service => {
+                const serviceRow = document.createElement('div');
+                serviceRow.className = 'flex flex-col md:flex-row gap-4 service-row';
+                serviceRow.innerHTML = `
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700">Вид услуги</label>
+                        <input type="text" class="service-name w-full p-2 bg-gray-200 rounded-lg" value="${service.name}" readonly>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700">Сумма</label>
+                        <div class="relative">
+                            <input type="number" class="service-price w-full p-2 bg-gray-200 rounded-lg" value="${service.price}" readonly>
+                            <span class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">₽</span>
+                        </div>
+                    </div>
+                `;
+                servicesContainer.appendChild(serviceRow);
+            });
+            
+            // Устанавливаем режим просмотра
+            setViewMode();
+            
+            // Обновляем итоговую сумму
+            totalAmount.textContent = `${order.total} ₽`;
+            
+            modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                modal.classList.remove('translate-y-full');
+            }, 50);
+        }
+
+        function setViewMode() {
+            // Делаем поля только для чтения
+            fullName.readOnly = true;
+            phone.readOnly = true;
+            paymentMethod.disabled = true;
+            
+            // Меняем стили полей
+            fullName.className = 'w-full p-2 bg-gray-200 rounded-lg';
+            phone.className = 'w-full p-2 bg-gray-200 rounded-lg';
+            paymentMethod.className = 'w-full p-2 bg-gray-200 rounded-lg';
+            
+            // Деактивируем кнопку и меняем текст
+            submitButton.disabled = true;
+            submitButton.className = 'w-full p-3 bg-gray-300 text-gray-500 rounded-lg font-semibold cursor-not-allowed';
+            submitButton.textContent = 'Только просмотр';
+            
+            // Скрываем кнопку добавления услуг
+            addService.style.display = 'none';
+        }
+
+        function resetFormToCreateMode() {
+            // Очищаем поля
+            fullName.value = '';
+            phone.value = '';
+            
+            // Восстанавливаем редактируемость
+            fullName.readOnly = false;
+            phone.readOnly = false;
+            paymentMethod.disabled = false;
+            
+            // Восстанавливаем стили
+            fullName.className = 'w-full p-2 bg-[#eeedec] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300';
+            phone.className = 'w-full p-2 bg-[#eeedec] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300';
+            paymentMethod.className = 'w-full p-2 bg-[#eeedec] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300';
+            
+            // Сбрасываем услуги
+            servicesContainer.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-4 service-row">
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700">Вид услуги</label>
+                        <input type="text" class="service-name w-full p-2 bg-[#eeedec] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700">Сумма</label>
+                        <div class="relative">
+                            <input type="number" class="service-price w-full p-2 bg-[#eeedec] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" min="0">
+                            <span class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">₽</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            paymentMethod.value = 'Наличные';
+            totalAmount.textContent = '0 ₽';
+            
+            // Восстанавливаем кнопку
+            submitButton.disabled = true;
+            submitButton.className = 'w-full p-3 bg-gray-300 text-gray-500 rounded-lg font-semibold cursor-not-allowed';
+            submitButton.textContent = 'Готово';
+            
+            // Показываем кнопку добавления услуг
+            addService.style.display = 'block';
+            
+            // Добавляем обработчики
+            addFormEventListeners();
         }
 
         function closeModal() {
@@ -182,7 +296,6 @@
             setTimeout(() => {
                 modalOverlay.classList.add('opacity-0', 'pointer-events-none');
                 document.body.style.overflow = '';
-                resetForm();
             }, 300);
         }
 
@@ -191,7 +304,6 @@
             const whatsappLink = document.querySelector('.notify-whatsapp');
             const phoneLink = document.querySelector('.notify-phone');
             
-            // Формируем ссылки с актуальными данными заказа
             telegramLink.href = `https://t.me/yourlook_atelier?text=${encodeURIComponent('Заказ №' + order.id + ' готов')}`;
             whatsappLink.href = `https://wa.me/+79163961127?text=${encodeURIComponent('Заказ №' + order.id + ' готов')}`;
             phoneLink.href = `tel:${order.phone.replace(/[^+\d]/g, '')}`;
@@ -212,34 +324,6 @@
                 notifyModalOverlay.classList.add('opacity-0', 'pointer-events-none');
                 document.body.style.overflow = '';
             }, 300);
-        }
-
-        function resetForm() {
-            fullName.value = '';
-            phone.value = '';
-            servicesContainer.innerHTML = `
-                <div class="flex flex-col md:flex-row gap-4 service-row">
-                    <div class="flex-1">
-                        <label class="block text-sm font-medium text-gray-700">Вид услуги</label>
-                        <input type="text" class="service-name w-full p-2 bg-[#eeedec] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300">
-                    </div>
-                    <div class="flex-1">
-                        <label class="block text-sm font-medium text-gray-700">Сумма</label>
-                        <div class="relative">
-                            <input type="number" class="service-price w-full p-2 bg-[#eeedec] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" min="0">
-                            <span class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">₽</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            paymentMethod.value = 'Наличные';
-            totalAmount.textContent = '0 ₽';
-            submitButton.disabled = true;
-            submitButton.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
-            submitButton.classList.remove('bg-[#FF4500]', 'text-white', 'cursor-pointer');
-            
-            // Добавляем обработчики событий для новых полей
-            addFormEventListeners();
         }
 
         function addFormEventListeners() {
@@ -263,6 +347,8 @@
         }
 
         function validateForm() {
+            if (isViewMode) return;
+            
             const hasName = fullName.value.trim() !== '';
             const hasPhone = phone.value.trim() !== '';
             const serviceRows = Array.from(document.querySelectorAll('.service-row'));
@@ -274,12 +360,10 @@
             
             if (hasName && hasPhone && hasServices) {
                 submitButton.disabled = false;
-                submitButton.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
-                submitButton.classList.add('bg-[#FF4500]', 'text-white', 'cursor-pointer');
+                submitButton.className = 'w-full p-3 bg-black text-white rounded-lg font-semibold cursor-pointer';
             } else {
                 submitButton.disabled = true;
-                submitButton.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
-                submitButton.classList.remove('bg-[#FF4500]', 'text-white', 'cursor-pointer');
+                submitButton.className = 'w-full p-3 bg-gray-300 text-gray-500 rounded-lg font-semibold cursor-not-allowed';
             }
         }
 
@@ -304,44 +388,56 @@
                 
                 ordersByDate[date].forEach(order => {
                     const table = document.createElement('div');
-                    table.className = 'bg-[#eeedec] rounded-lg p-4 mb-2 order-table';
+                    table.className = 'bg-[#eeedec] rounded-lg p-4 mb-2 order-table cursor-pointer hover:bg-gray-300 transition-colors';
+                    
                     table.innerHTML = `
-                        <div class="flex justify-between items-center flex-wrap gap-2">
-                            <span class="font-semibold">№${order.id}</span>
-                            <span class="flex-1 min-w-0 px-2">${order.fullName}</span>
-                            <span>${order.phone}</span>
-                            <span class="font-semibold">${order.total} ₽</span>
-                            <span class="px-2 py-1 bg-gray-200 rounded text-xs">${order.paymentMethod === 'Наличные' ? 'Наличные' : order.paymentMethod === 'Карта' ? 'Карта' : 'Без оплаты'}</span>
-                            <input type="checkbox" class="complete-checkbox w-5 h-5" ${order.completed ? 'checked' : ''}>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 order-1">
+                                <span class="font-semibold text-sm sm:text-base">№${order.id}</span>
+                                <span class="font-medium text-center px-2 text-sm sm:text-base">${order.fullName}</span>
+                                <span class="text-center text-sm sm:text-base">${order.phone}</span>
+                            </div>
+                            <div class="flex flex-row justify-between sm:justify-end items-center gap-3 sm:gap-4 order-2">
+                                <span class="font-semibold text-sm sm:text-base">${order.total} ₽</span>
+                                <span class="px-2 py-1 bg-gray-200 rounded text-xs">${order.paymentMethod === 'Наличные' ? 'Наличные' : order.paymentMethod === 'Карта' ? 'Карта' : 'Без оплаты'}</span>
+                                <input type="checkbox" class="complete-checkbox w-5 h-5" ${order.completed ? 'checked' : ''}>
+                            </div>
                         </div>
-                        <div class="mt-2 text-sm text-gray-600">
+                        <div class="mt-2 text-xs sm:text-sm text-gray-600">
                             ${order.services.map(service => `${service.name}: ${service.price} ₽`).join(', ')}
                         </div>
                     `;
                     
                     const checkbox = table.querySelector('.complete-checkbox');
-                    checkbox.addEventListener('change', () => {
+                    checkbox.addEventListener('change', (e) => {
+                        e.stopPropagation();
                         order.completed = checkbox.checked;
                         if (checkbox.checked) {
                             openNotifyModal(order);
                         }
                     });
                     
+                    table.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('complete-checkbox')) {
+                            return;
+                        }
+                        openViewModal(order);
+                    });
+                    
                     tablesContainer.appendChild(table);
                 });
             });
             
-            // Добавляем кнопку создания нового заказа в виде таблицы-скелетона
+            // Кнопка создания заказа
             const addTableButton = document.createElement('div');
-            addTableButton.className = 'bg-[#eeedec] border-2 border-dashed border-gray-500 rounded-lg p-4 mb-2 cursor-pointer hover:bg-gray-300 transition-colors mt-6 add-order-button';
+            addTableButton.className = 'bg-gray-100 border-2 border-dashed border-gray-400 rounded-lg p-3 mb-2 cursor-pointer hover:bg-gray-200 transition-colors mt-6 add-order-button';
             addTableButton.innerHTML = `
-                <div class="flex justify-center items-center py-6">
-                    <span class="text-3xl font-bold text-gray-500 mr-4">+</span>
-                    <span class="text-lg font-semibold text-gray-500">Создать новый заказ</span>
+                <div class="flex justify-center items-center py-2">
+                    <span class="text-2xl font-bold text-gray-500 mr-3">+</span>
+                    <span class="text-base font-semibold text-gray-500">Создать новый заказ</span>
                 </div>
             `;
             
-            // Добавляем обработчик клика
             addTableButton.addEventListener('click', openModal);
             tablesContainer.appendChild(addTableButton);
             
@@ -354,13 +450,11 @@
             const dateHeaders = tablesContainer.querySelectorAll('h2');
             const addButton = document.querySelector('.add-order-button');
             
-            // Фильтруем только таблицы с заказами
             orderTables.forEach(table => {
                 const text = table.textContent.toLowerCase();
                 table.style.display = query === '' || text.includes(query) ? '' : 'none';
             });
             
-            // Скрываем заголовки дат, если под ними нет видимых заказов
             dateHeaders.forEach(header => {
                 let hasVisibleOrders = false;
                 let nextElement = header.nextElementSibling;
@@ -376,7 +470,6 @@
                 header.style.display = hasVisibleOrders ? '' : 'none';
             });
             
-            // Кнопка добавления всегда видна
             if (addButton) {
                 addButton.style.display = '';
             }
@@ -393,6 +486,8 @@
         });
 
         addService.addEventListener('click', () => {
+            if (isViewMode) return;
+            
             const newRow = document.createElement('div');
             newRow.className = 'flex flex-col md:flex-row gap-4 service-row';
             newRow.innerHTML = `
@@ -411,7 +506,6 @@
             `;
             servicesContainer.appendChild(newRow);
             
-            // Добавляем обработчики для новой строки
             newRow.querySelector('.service-name').addEventListener('input', validateForm);
             newRow.querySelector('.service-price').addEventListener('input', calculateTotal);
             newRow.querySelector('.remove-service').addEventListener('click', () => {
@@ -424,7 +518,7 @@
         phone.addEventListener('input', validateForm);
 
         submitButton.addEventListener('click', () => {
-            if (!submitButton.disabled) {
+            if (!submitButton.disabled && !isViewMode) {
                 const services = Array.from(document.querySelectorAll('.service-row')).map(row => ({
                     name: row.querySelector('.service-name').value,
                     price: parseFloat(row.querySelector('.service-price').value) || 0
@@ -449,7 +543,7 @@
 
         searchInput.addEventListener('input', performSearch);
 
-        // Инициализация при загрузке страницы
+        // Инициализация
         addFormEventListeners();
         renderTables();
     </script>
