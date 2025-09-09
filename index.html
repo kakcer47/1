@@ -13,32 +13,25 @@
         .button-container {
             display: flex;
             gap: 20px;
+            justify-content: center;
         }
         .button {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-decoration: none;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
-        .button img {
-            width: 100%;
-            height: 100%;
+        .button:hover {
+            transform: scale(1.1);
         }
         @media (min-width: 1024px) {
             .main-page {
                 max-width: 1200px;
                 margin: 0 auto;
-            }
-            .modal-overlay {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .modal {
-                width: 50%;
-                max-width: 600px;
             }
         }
     </style>
@@ -49,11 +42,11 @@
             <input type="text" id="searchInput" placeholder="Поиск..." class="w-full p-3 text-lg rounded-lg bg-[#eeedec] border-none focus:outline-none focus:ring-2 focus:ring-gray-300">
         </div>
         <div id="tablesContainer" class="space-y-4"></div>
-        <button id="addButton" class="fixed bottom-4 right-4 w-12 h-12 bg-[#eeedec] border-2 border-dashed border-gray-500 rounded-full flex items-center justify-center text-2xl font-bold text-gray-500 hover:bg-gray-300 transition-colors">+</button>
     </div>
 
+    <!-- Основное модальное окно -->
     <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-500 pointer-events-none z-[110]" id="modalOverlay">
-        <div class="modal fixed inset-x-0 bottom-0 md:relative bg-gray-100 rounded-t-2xl md:rounded-2xl transform translate-y-full md:translate-y-0 transition-transform duration-300 ease-out shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full md:w-[600px] max-h-[80vh] z-[120] flex flex-col" id="modal">
+        <div class="modal fixed inset-x-0 bottom-0 md:relative bg-gray-100 rounded-t-2xl md:rounded-2xl transform translate-y-full md:translate-y-0 transition-transform duration-300 ease-out shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full md:w-[600px] max-h-[80vh] z-[120] flex flex-col md:mx-auto md:my-auto" id="modal">
             <div class="modal-header flex justify-between items-center p-4 border-b border-gray-300">
                 <h2 class="modal-title text-lg font-semibold" id="modalTitle">Новый заказ</h2>
                 <button class="modal-close-btn w-9 h-9 bg-[#eeedec] rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors text-xl font-bold" id="modalClose">×</button>
@@ -111,22 +104,23 @@
         </div>
     </div>
 
-    <div class="notify-modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-500 pointer-events-none z-[110]" id="notifyModalOverlay">
-        <div class="notify-modal fixed inset-x-0 bottom-0 md:relative bg-gray-100 rounded-t-2xl md:rounded-2xl transform translate-y-full md:translate-y-0 transition-transform duration-300 ease-out shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full md:w-96 max-h-[80vh] z-[120] flex flex-col" id="notifyModal">
+    <!-- Модальное окно уведомлений -->
+    <div class="notify-modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-500 pointer-events-none z-[110] flex justify-center items-center" id="notifyModalOverlay">
+        <div class="notify-modal bg-gray-100 rounded-2xl transform scale-95 opacity-0 transition-all duration-300 ease-out shadow-xl w-96 z-[120] flex flex-col" id="notifyModal">
             <div class="notify-modal-header flex justify-between items-center p-4 border-b border-gray-300">
                 <h2 class="notify-modal-title text-lg font-semibold">Сообщить о готовности</h2>
                 <button class="notify-modal-close-btn w-9 h-9 bg-[#eeedec] rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors text-xl font-bold" id="notifyModalClose">×</button>
             </div>
-            <div class="notify-modal-content flex-1 p-6">
+            <div class="notify-modal-content p-6">
                 <div class="button-container">
-                    <a href="#" class="button notify-telegram" target="_blank" title="Telegram">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">T</div>
+                    <a href="#" class="button notify-telegram bg-blue-500 hover:bg-blue-600 text-white font-bold text-xl" target="_blank" title="Telegram">
+                        T
                     </a>
-                    <a href="#" class="button notify-whatsapp" target="_blank" title="WhatsApp">
-                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">W</div>
+                    <a href="#" class="button notify-whatsapp bg-green-500 hover:bg-green-600 text-white font-bold text-xl" target="_blank" title="WhatsApp">
+                        W
                     </a>
-                    <a href="#" class="button notify-phone" title="Позвонить">
-                        <div class="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold">📞</div>
+                    <a href="#" class="button notify-phone bg-gray-500 hover:bg-gray-600 text-white font-bold text-lg" title="Позвонить">
+                        📞
                     </a>
                 </div>
             </div>
@@ -138,7 +132,6 @@
         moment.locale('ru');
         const searchInput = document.getElementById('searchInput');
         const tablesContainer = document.getElementById('tablesContainer');
-        const addButton = document.getElementById('addButton');
         const modalOverlay = document.getElementById('modalOverlay');
         const modal = document.getElementById('modal');
         const modalTitle = document.getElementById('modalTitle');
@@ -197,20 +190,24 @@
             const telegramLink = document.querySelector('.notify-telegram');
             const whatsappLink = document.querySelector('.notify-whatsapp');
             const phoneLink = document.querySelector('.notify-phone');
-            telegramLink.href = `https://t.me/yourlook_atelier?text=Заказ №${order.id} готов`;
-            whatsappLink.href = `https://wa.me/+79163961127?text=Заказ №${order.id} готов`;
-            phoneLink.href = `tel:${order.phone}`;
+            
+            // Формируем ссылки с актуальными данными заказа
+            telegramLink.href = `https://t.me/yourlook_atelier?text=${encodeURIComponent('Заказ №' + order.id + ' готов')}`;
+            whatsappLink.href = `https://wa.me/+79163961127?text=${encodeURIComponent('Заказ №' + order.id + ' готов')}`;
+            phoneLink.href = `tel:${order.phone.replace(/[^+\d]/g, '')}`;
             
             notifyModalOverlay.classList.remove('opacity-0', 'pointer-events-none');
             document.body.style.overflow = 'hidden';
             
             setTimeout(() => {
-                notifyModal.classList.remove('translate-y-full');
+                notifyModal.classList.remove('scale-95', 'opacity-0');
+                notifyModal.classList.add('scale-100', 'opacity-100');
             }, 50);
         }
 
         function closeNotifyModal() {
-            notifyModal.classList.add('translate-y-full');
+            notifyModal.classList.remove('scale-100', 'opacity-100');
+            notifyModal.classList.add('scale-95', 'opacity-0');
             setTimeout(() => {
                 notifyModalOverlay.classList.add('opacity-0', 'pointer-events-none');
                 document.body.style.overflow = '';
@@ -307,7 +304,7 @@
                 
                 ordersByDate[date].forEach(order => {
                     const table = document.createElement('div');
-                    table.className = 'bg-[#eeedec] rounded-lg p-4 mb-2';
+                    table.className = 'bg-[#eeedec] rounded-lg p-4 mb-2 order-table';
                     table.innerHTML = `
                         <div class="flex justify-between items-center flex-wrap gap-2">
                             <span class="font-semibold">№${order.id}</span>
@@ -334,15 +331,31 @@
                 });
             });
             
+            // Добавляем кнопку создания нового заказа в виде таблицы-скелетона
+            const addTableButton = document.createElement('div');
+            addTableButton.className = 'bg-[#eeedec] border-2 border-dashed border-gray-500 rounded-lg p-4 mb-2 cursor-pointer hover:bg-gray-300 transition-colors mt-6 add-order-button';
+            addTableButton.innerHTML = `
+                <div class="flex justify-center items-center py-6">
+                    <span class="text-3xl font-bold text-gray-500 mr-4">+</span>
+                    <span class="text-lg font-semibold text-gray-500">Создать новый заказ</span>
+                </div>
+            `;
+            
+            // Добавляем обработчик клика
+            addTableButton.addEventListener('click', openModal);
+            tablesContainer.appendChild(addTableButton);
+            
             performSearch();
         }
 
         function performSearch() {
             const query = searchInput.value.toLowerCase().trim();
-            const tables = tablesContainer.querySelectorAll('div.rounded-lg');
+            const orderTables = tablesContainer.querySelectorAll('.order-table');
             const dateHeaders = tablesContainer.querySelectorAll('h2');
+            const addButton = document.querySelector('.add-order-button');
             
-            tables.forEach(table => {
+            // Фильтруем только таблицы с заказами
+            orderTables.forEach(table => {
                 const text = table.textContent.toLowerCase();
                 table.style.display = query === '' || text.includes(query) ? '' : 'none';
             });
@@ -352,7 +365,7 @@
                 let hasVisibleOrders = false;
                 let nextElement = header.nextElementSibling;
                 
-                while (nextElement && nextElement.classList.contains('rounded-lg')) {
+                while (nextElement && nextElement.classList.contains('order-table')) {
                     if (nextElement.style.display !== 'none') {
                         hasVisibleOrders = true;
                         break;
@@ -362,10 +375,14 @@
                 
                 header.style.display = hasVisibleOrders ? '' : 'none';
             });
+            
+            // Кнопка добавления всегда видна
+            if (addButton) {
+                addButton.style.display = '';
+            }
         }
 
         // Обработчики событий
-        addButton.addEventListener('click', openModal);
         modalClose.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) closeModal();
@@ -390,7 +407,7 @@
                         <span class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">₽</span>
                     </div>
                 </div>
-                <button type="button" class="remove-service text-red-500 hover:text-red-700 self-end md:self-center">Удалить</button>
+                <button type="button" class="remove-service text-red-500 hover:text-red-700 self-end md:self-center px-2 py-1">Удалить</button>
             `;
             servicesContainer.appendChild(newRow);
             
@@ -432,10 +449,8 @@
 
         searchInput.addEventListener('input', performSearch);
 
-        // Инициализация формы при загрузке
+        // Инициализация при загрузке страницы
         addFormEventListeners();
-        
-        // Показываем кнопку создания заказа при первой загрузке
         renderTables();
     </script>
 </body>
