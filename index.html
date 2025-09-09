@@ -391,19 +391,23 @@
                     table.className = 'bg-[#eeedec] rounded-lg p-4 mb-2 order-table cursor-pointer hover:bg-gray-300 transition-colors';
                     
                     table.innerHTML = `
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 order-1">
-                                <span class="font-semibold text-sm sm:text-base">№${order.id}</span>
-                                <span class="font-medium text-center px-2 text-sm sm:text-base">${order.fullName}</span>
-                                <span class="text-center text-sm sm:text-base">${order.phone}</span>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-2 flex-1 min-w-0">
+                                    <span class="font-semibold text-sm">№${order.id}</span>
+                                    <span class="font-medium text-sm truncate">${order.fullName}</span>
+                                    <span class="text-sm truncate">${order.phone}</span>
+                                </div>
                             </div>
-                            <div class="flex flex-row justify-between sm:justify-end items-center gap-3 sm:gap-4 order-2">
-                                <span class="font-semibold text-sm sm:text-base">${order.total} ₽</span>
-                                <span class="px-2 py-1 bg-gray-200 rounded text-xs">${order.paymentMethod === 'Наличные' ? 'Наличные' : order.paymentMethod === 'Карта' ? 'Карта' : 'Без оплаты'}</span>
-                                <input type="checkbox" class="complete-checkbox w-5 h-5" ${order.completed ? 'checked' : ''}>
+                            <div class="flex justify-between items-center">
+                                <span class="font-semibold text-sm">${order.total} ₽</span>
+                                <div class="flex items-center gap-3">
+                                    <span class="px-2 py-1 bg-gray-200 rounded text-xs">${order.paymentMethod === 'Наличные' ? 'Наличные' : order.paymentMethod === 'Карта' ? 'Карта' : 'Без оплаты'}</span>
+                                    <input type="checkbox" class="complete-checkbox w-5 h-5" ${order.completed ? 'checked' : ''}>
+                                </div>
                             </div>
                         </div>
-                        <div class="mt-2 text-xs sm:text-sm text-gray-600">
+                        <div class="mt-2 text-xs text-gray-600">
                             ${order.services.map(service => `${service.name}: ${service.price} ₽`).join(', ')}
                         </div>
                     `;
