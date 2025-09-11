@@ -17,12 +17,10 @@
         .modal {
             background-color: #0d1117 !important;
             color: #f0f0f0 !important;
-            width: 33.33%;
-            margin: 0 auto;
-            position: relative;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            box-shadow: 0 -4px 6px -1px rgba(195, 195, 196, 0.3), 0 -10px 15px -3px rgba(195, 195, 196, 0.2) !important;
+            width: 100%; /* Убираем это для мобильных */
+            max-width: 100%; /* Добавляем, чтобы соответствовать .main-page */
+            margin: 0 auto; /* Центрируем, как .main-page */
         }
 
         .button-container {
@@ -55,12 +53,12 @@
         }
         
         @media (min-width: 1024px) {
-
             .main-page,
             .modal {
                 width: 33.33%;
                 margin: 0 auto;
             }
+        }
 
             .modal-overlay {
                 display: flex;
