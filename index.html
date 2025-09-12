@@ -697,6 +697,26 @@
             }
         }
 
+        // Функция для нормализации имени файла
+        function getIconSrc(category) {
+            return `./png/${category.toLowerCase().replace(/[\s,.]+/g, '')}.png`;
+        }
+        
+        // Добавляем иконки после загрузки DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            categoryButtons.forEach(button => {
+                const category = button.getAttribute('data-category');
+                const img = button.querySelector('img');
+                img.src = getIconSrc(category);
+                img.alt = `${category} icon`;
+                img.style.display = 'block';
+                
+                img.onerror = () => {
+                    img.style.display = 'none';
+                };
+            });
+        });
+    </script>
         // Полнотекстовый поиск
         const searchInput = document.getElementById('searchInput');
         const categoriesContainer = document.getElementById('categoriesContainer');
@@ -721,26 +741,5 @@
                 });
             }
         });
-
-        // Функция для нормализации имени файла
-        function getIconSrc(category) {
-            return `./png/${category.toLowerCase().replace(/[\s,.]+/g, '')}.png`;
-        }
-        
-        // Добавляем иконки после загрузки DOM
-        document.addEventListener('DOMContentLoaded', () => {
-            categoryButtons.forEach(button => {
-                const category = button.getAttribute('data-category');
-                const img = button.querySelector('img');
-                img.src = getIconSrc(category);
-                img.alt = `${category} icon`;
-                img.style.display = 'block';
-                
-                img.onerror = () => {
-                    img.style.display = 'none';
-                };
-            });
-        });
-    </script>
 </body>
 </html>
