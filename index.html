@@ -8,127 +8,114 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Rubik', sans-serif;
-            background-color: #0d1117 !important;
-            color: #f0f0f0 !important;
+    body {
+        font-family: 'Rubik', sans-serif;
+        background-color: #0d1117 !important;
+        color: #f0f0f0 !important;
+    }
+    
+    .floating-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        backdrop-filter: blur(4px);
+        background: transparent;
+        padding: 1.5rem;
+        z-index: 100;
+    }
+    
+    .search-input {
+        background-color: #151b23;
+        border: none;
+        color: #f0f0f0;
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+    }
+    
+    .search-input::placeholder {
+        color: #858585;
+    }
+    
+    .main-content {
+        padding-top: 140px !important;
+    }
+    
+    .button-container {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .button {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+    }
+    
+    .button svg {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .modal-overlay {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    
+    .modal {
+        background-color: #0d1117 !important;
+        color: #f0f0f0 !important;
+        box-shadow: 0 -4px 6px -1px rgba(195, 195, 196, 0.3), 0 -10px 15px -3px rgba(195, 195, 196, 0.2) !important;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .modal-header {
+        background-color: #0d1117 !important;
+        color: #f0f0f0 !important;
+    }
+    
+    .modal-content {
+        background-color: #0d1117 !important;
+        color: #f0f0f0 !important;
+    }
+    
+    /* Адаптивность для больших экранов */
+    @media (min-width: 1024px) {
+        .floating-header {
+            width: 33.33%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    
+        .main-page {
+            width: 33.33%;
+            margin: 0 auto;
+        }
+        
+        .modal-overlay {
+            align-items: center;
         }
         
         .modal {
-            background-color: #0d1117 !important;
-            color: #f0f0f0 !important;
-            box-shadow: 0 -4px 6px -1px rgba(195, 195, 196, 0.3), 0 -10px 15px -3px rgba(195, 195, 196, 0.2) !important;
-            width: 100%; /* Убираем это для мобильных */
-            max-width: 100%; /* Добавляем, чтобы соответствовать .main-page */
-            margin: 0 auto; /* Центрируем, как .main-page */
-        }
-
-        .button-container {
-            display: flex;
-            gap: 20px; /* Отступ между кнопками */
-        }
-        
-        .button {
-            width: 40px; /* Ширина кнопки */
-            height: 40px; /* Высота кнопки */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none; /* Убираем подчеркивание */
-        }
-        
-        .button svg {
-            width: 100%;
-            height: 100%;
-        }
-     
-        .modal-header {
-            background-color: #0d1117 !important;
-            color: #f0f0f0 !important;
-        }
-
-        .modal-content {
-            background-color: #0d1117 !important;
-            color: #f0f0f0 !important;
-        }
-        
-        .floating-header {
+            width: 33.33% !important;
+            max-width: 33.33% !important;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            backdrop-filter: blur(4px);
-            background: transparent;
-            padding: 1.5rem;
+            top: 50%;
+            bottom: auto;
+            transform: translateX(-50%) translateY(-50%);
         }
-        
-        .search-input {
-            background-color: #151b23;
-            border: none;
-            color: #f0f0f0;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-        }
-        
-        .search-input::placeholder {
-            color: #858585;
-        }
-        
-        .main-content {
-            padding-top: 140px !important;
-        }
-        
-        @media (min-width: 1024px) {
-            .floating-header {
-                width: 33.33%;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        
-            .main-page {
-                width: 33.33%;
-                margin: 0 auto;
-            }
-            
-            .modal {
-                width: 33.33%;
-                left: 50%;
-                transform: translateX(-50%);
-                margin: 0;
-            }
-            
-            .modal-overlay {
-                align-items: center; /* Центрируем по вертикали на больших экранах */
-            }
-        }
-
-            .modal-overlay {
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-            }
-
-            .modal {
-                position: relative;
-                bottom: 0;
-                left: 0;
-                right: 0;
-            }
-            
-            .button {
-                 background-color: #FF4500;
-                 border: none;
-                 color: white;
-                 padding: 20px 34px;
-                 text-align: center;
-                 text-decoration: none;
-                 display: inline-block;
-                 font-size: 20px;
-                 margin: 4px 2px;
-                 cursor: pointer;
-            }
-        }
+    }
     </style>
 </head>
 
