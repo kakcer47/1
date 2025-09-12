@@ -117,11 +117,20 @@
         border: none;
         color: #f0f0f0;
         cursor: pointer;
+        align-items: center !important;  /* Центрирование */
+        justify-content: center !important;  /* Вертикальный центр, если нужно */
     }
+    
+//.category-btn {
+//    display: flex !important;  /* Добавь это */
+//    flex-direction: column !important;  /* Иконка сверху, текст снизу */
+//    gap: 8px !important;  /* Отступ между иконкой и текстом */
+//    padding: 1rem 0.75rem !important;  /* Увеличь padding сверху для места под иконку */
+//}
 
     .category-btn img {
-        width: 86px !important;  /* Размер иконки — подгони под дизайн */
-        height: 86px !important;
+        width: 64px !important;  /* Размер иконки — подгони под дизайн */
+        height: 64px !important;
         object-fit: contain !important;  /* Чтобы PNG не растягивалось */
     }
 
