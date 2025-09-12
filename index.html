@@ -712,8 +712,9 @@
                 });
             } else {
                 allCategories.forEach(button => {
-                    const categoryText = button.textContent.toLowerCase();
-                    if (categoryText.includes(searchTerm)) {
+                    // Ищем только по тексту span элемента
+                    const spanText = button.querySelector('span').textContent.toLowerCase();
+                    if (spanText.includes(searchTerm)) {
                         button.style.display = 'block';
                     } else {
                         button.style.display = 'none';
