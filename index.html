@@ -31,7 +31,7 @@
         color: #f0f0f0;
         width: 100%;
         padding: 12px;
-        border-radius: 8px;
+        border-radius: 8px !important;;
     }
     
     .search-input::placeholder {
@@ -69,7 +69,7 @@
         max-width: 100%;
         margin: 0 auto;
         position: relative;
-        border-radius: 8px;
+        border-radius: 8px !important;;
     }
 
     .modal-header-custom {
@@ -139,13 +139,12 @@
         .modal-window {
             width: 33.33% !important;
             max-width: 33.33% !important;
-            left: 50%;
-            transform: translateX(-50%);
-            margin: 0;
-            position: fixed;
-            top: 50%;
-            bottom: auto;
-            transform: translate(-50%, -50%);
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            bottom: auto !important;
+            margin: 0 !important;
+            transform: translate(-50%, -50%) !important;
         }
     }
     @media (max-width: 1023px) {
