@@ -355,6 +355,30 @@
                 });
             }
         });
+
+        // Функция для нормализации имени файла (пример: "Autodesk 3ds Max" -> "autodesk3dsmax.png")
+        function getIconSrc(category) {
+            return `./png/${category.toLowerCase().replace(/\s+/g, '')}.png`;
+        }
+        
+        // Добавляем иконки после загрузки DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            categoryButtons.forEach(button => {
+                const category = button.getAttribute('data-category');
+                const img = document.createElement('img');
+                img.src = getIconSrc(category);
+                img.alt = `${category} icon`;  // Для доступности
+                img.style.display = 'block';  // По умолчанию видимая
+                
+                // Если ошибка загрузки — спрячь иконку
+                img.onerror = () => {
+                    img.style.display = 'none';
+                };
+                
+                // Вставляем img ПЕРЕД текстом кнопки (как первый ребёнок)
+                button.insertBefore(img, button.firstChild);
+            });
+        });
     </script>
 </body>
 
