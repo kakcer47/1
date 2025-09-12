@@ -120,8 +120,10 @@
 
     @media (max-width: 1023px) {
         .modal {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            border-top-left-radius: 16px !important;
+            border-top-right-radius: 16px !important;
         }
     }
     </style>
@@ -220,7 +222,7 @@
 
     <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-500 pointer-events-none z-[110]"
         id="modalOverlay">
-        <div class="modal fixed bottom-0 bg-gray-100 rounded-t-2xl transform translate-y-full transition-transform duration-600 ease-[cubic-bezier(0.25,0.8,0.25,1)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full max-h-[80vh] z-[120] flex flex-col"
+        <div class="modal fixed bottom-0 bg-gray-100 transform translate-y-full transition-transform duration-600 ease-[cubic-bezier(0.25,0.8,0.25,1)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-10px_15px_-3px_rgba(0,0,0,0.1)] w-full max-h-[80vh] z-[120] flex flex-col"
             id="modal">
             <div class="modal-header flex justify-between items-center p-4 border-b border-gray-300">
                 <h2 class="modal-title text-lg font-semibold" id="modalTitle"></h2>
