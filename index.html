@@ -52,7 +52,41 @@
             color: #f0f0f0 !important;
         }
         
+        .floating-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+            background: transparent;
+            padding: 1.5rem;
+        }
+        
+        .search-input {
+            background-color: #151b23;
+            border: none;
+            color: #f0f0f0;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .search-input::placeholder {
+            color: #858585;
+        }
+        
+        .main-content {
+            padding-top: 120px; /* отступ для плавающего заголовка */
+        }
+        
         @media (min-width: 1024px) {
+            .floating-header {
+                width: 33.33%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
             .main-page,
             .modal {
                 width: 33.33%;
@@ -90,9 +124,15 @@
 </head>
 
 <body class="bg-[#0d1117] text-[#f0f0f0f0]">
-    <div class="main-page p-6">
-        <h1 class="text-2xl font-bold text-left mb-6">Stylish Antelope - Программы</h1>
-        <div class="space-y-2">
+    <div class="floating-header">
+        <h1 class="text-2xl font-bold text-left mb-4">Stylish Antelope - Программы</h1>
+        <input type="text" 
+               class="search-input" 
+               placeholder="Поиск программ" 
+               id="searchInput">
+    </div>
+    <div class="main-page main-content p-6">
+        <div class="space-y-2" id="categoriesContainer">
             <button
                 class="category-button w-full bg-[#151b23] text-left p-3 hover:bg-gray-300 transition-colors rounded-lg"
                 data-category="Пошив женской одежды">Пошив женской одежды</button>
@@ -255,6 +295,32 @@
             }
             return; // добавь в самом конце
         }
+
+        // Полнотекстовый поиск
+        const searchInput = document.getElementById('searchInput');
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        const allCategories = Array.from(document.querySelectorAll('.category-button'));
+        
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                // Показать все категории
+                allCategories.forEach(button => {
+                    button.style.display = 'block';
+                });
+            } else {
+                // Фильтровать категории
+                allCategories.forEach(button => {
+                    const categoryText = button.textContent.toLowerCase();
+                    if (categoryText.includes(searchTerm)) {
+                        button.style.display = 'block';
+                    } else {
+                        button.style.display = 'none';
+                    }
+                });
+            }
+        });
     </script>
 </body>
 
