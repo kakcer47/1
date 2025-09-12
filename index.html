@@ -41,9 +41,9 @@
             color: #858585;
         }
 
-//        .search-input:focus {
-//            outline: none !important;
-//        }
+        .search-input:focus {
+            outline: none !important;
+        }
 
         .main-content {
             padding-top: 140px !important;
@@ -729,21 +729,15 @@
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
             
-            if (searchTerm === '') {
-                allCategories.forEach(button => {
-                    button.style.display = 'block';
-                });
-            } else {
-                allCategories.forEach(button => {
-                    // Ищем только по тексту span элемента
-                    const spanText = button.querySelector('span').textContent.toLowerCase();
-                    if (spanText.includes(searchTerm)) {
-                        button.style.display = 'block';
-                    } else {
-                        button.style.display = 'none';
-                    }
-                });
-            }
+            allCategories.forEach(button => {
+                const spanText = button.querySelector('span').textContent.toLowerCase();
+                
+                if (searchTerm === '' || spanText.includes(searchTerm)) {
+                    button.classList.remove('hidden');
+                } else {
+                    button.classList.add('hidden');
+                }
+            });
         });
     </script>
 </body>
