@@ -637,7 +637,8 @@
                 if (e.target.closest('.split-button')) {
                     const isLeft = e.target.closest('.split-left');
                     const category = button.getAttribute('data-category');
-                    modalTitle.textContent = category + (isLeft ? ' (Левая)' : ' (Правая)');
+                    const platform = isLeft ? 'Win' : 'Mac';
+                    modalTitle.textContent = `${category} (${platform})`;
                     
                     // Загружаем данные перед открытием модального окна
                     modalContent.innerHTML = '<p>Загрузка...</p>';
@@ -668,13 +669,16 @@
 
         async function loadServices(category, isLeft) {
             try {
-                const response = await fetch(`./${category}.json`);
+                const suffix = isLeft ? ' Win' : ' Mac';
+                const fileName = `${category}${suffix}.json`;
+                const response = await fetch(`./${fileName}`);
                 const data = await response.json();
+                
                 modalContent.innerHTML = '';
                 data.services.forEach(service => {
                     const serviceButton = document.createElement('div');
                     serviceButton.className = 'w-full p-3 text-left bg-transparent border-none font-bold';
-                    serviceButton.textContent = service.name + (isLeft ? ' (Левая подкнопка)' : ' (Правая подкнопка)');
+                    serviceButton.textContent = service.name;
                     modalContent.appendChild(serviceButton);
 
                     service.subServices.forEach(subService => {
