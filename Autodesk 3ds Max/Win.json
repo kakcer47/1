@@ -1,6 +1,12 @@
 {
     "services": [
         {
+            "name": "Видео инструкция",
+            "subServices": [
+                {"name": "Смотреть", "web": "https://claude.ai", "but": "0"}
+            ]
+        },
+        {
             "name": "Скачать",
             "subServices": [
                 {"name": "3ds Max 2026.5", "web": "https://claude.ai", "but": "1"},
