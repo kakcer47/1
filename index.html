@@ -12,7 +12,6 @@
             background-color: #1e1e1e !important;
             color: #f0f0f0 !important;
         }
-
         .floating-header {
             position: fixed;
             top: 0;
@@ -23,7 +22,6 @@
             padding: 1.5rem;
             z-index: 100;
         }
-
         .search-input {
             background-color: #262626;
             border: none;
@@ -32,28 +30,22 @@
             padding: 12px;
             border-radius: 8px !important;
         }
-
         .hidden {
             display: none !important;
         }
-
         .search-input::placeholder {
             color: #858585;
         }
-
         .search-input:focus {
             outline: none !important;
         }
-
         .main-content {
             padding-top: 140px !important;
         }
-
         .button-container {
             display: flex;
             gap: 20px;
         }
-
         .button {
             width: 40px;
             height: 40px;
@@ -62,12 +54,10 @@
             align-items: center;
             text-decoration: none;
         }
-
         .button svg {
             width: 100%;
             height: 100%;
         }
-
         .modal-window {
             background-color: #0d1117 !important;
             color: #f0f0f0 !important;
@@ -79,17 +69,14 @@
             border-radius: 8px !important;
             overflow: hidden !important;
         }
-
         .modal-header-custom {
             background-color: #0d1117 !important;
             color: #f0f0f0 !important;
         }
-
         .modal-content-custom {
             background-color: #0d1117 !important;
             color: #f0f0f0 !important;
         }
-
         .modal-close-button {
             width: 2.25rem;
             height: 2.25rem;
@@ -105,11 +92,9 @@
             font-size: 1.25rem;
             font-weight: bold;
         }
-
         .modal-close-button:hover {
             background-color: #d1d5db;
         }
-
         .category-btn {
             width: 100%;
             background-color: #262626;
@@ -126,18 +111,15 @@
             justify-content: center !important;
             position: relative;
         }
-
         .category-btn img {
             width: 64px !important;
             height: 64px !important;
             object-fit: contain !important;
         }
-
         .category-btn:hover > img,
         .category-btn:hover > span {
             display: none;
         }
-
         .split-button-container {
             display: none;
             position: absolute;
@@ -153,11 +135,9 @@
             border-radius: 0.5rem;
             padding: 0.5rem;
         }
-
         .category-btn:hover .split-button-container {
             display: flex;
         }
-
         .split-button {
             flex: 1;
             height: 100%;
@@ -168,42 +148,34 @@
             transition: all 0.3s ease;
             border-radius: 0.5rem;
         }
-
         .split-button:hover {
             background-color: #d1d5db;
         }
-
         .split-button svg {
             width: 32px;
             height: 32px;
         }
-
         .split-button:hover svg use {
             fill: #0d1117;
         }
-
         .divider {
             width: 0.5px;
             height: 80%;
             background-color: #f0f0f0;
         }
-
         @media (min-width: 1024px) {
             .floating-header {
                 width: 33.33%;
                 left: 50%;
                 transform: translateX(-50%);
             }
-
             .main-page {
                 width: 33.33%;
                 margin: 0 auto;
             }
-
             .modal-overlay {
                 align-items: center;
             }
-
             .modal-window {
                 width: 33.33% !important;
                 max-width: 33.33% !important;
@@ -239,363 +211,7 @@
     </div>
     <div class="main-page p-6" style="padding-top: 150px;">
         <div class="grid grid-cols-2 gap-2" id="categoriesContainer">
-            <button class="category-button category-btn" data-category="Microsoft Office">
-                <img src="./png/microsoftoffice.png" alt="Microsoft Office icon">
-                <span>Microsoft Office</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Autodesk 3ds Max">
-                <img src="./png/autodesk3dsmax.png" alt="Autodesk 3ds Max icon">
-                <span>Autodesk 3ds Max</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Джинсы">
-                <img src="./png/джинсы.png" alt="Джинсы icon">
-                <span>Джинсы</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Юбка">
-                <img src="./png/юбка.png" alt="Юбка icon">
-                <span>Юбка</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Платье, Сарафан">
-                <img src="./png/платье,сарафан.png" alt="Платье, Сарафан icon">
-                <span>Платье, Сарафан</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Купальники, Нижнее белье">
-                <img src="./png/купальники,нижнеебелье.png" alt="Купальники, Нижнее белье icon">
-                <span>Купальники, Нижнее белье</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Спортивная одежда">
-                <img src="./png/спортивнаяодежда.png" alt="Спортивная одежда icon">
-                <span>Спортивная одежда</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Домашний текстиль">
-                <img src="./png/домашнийтекстиль.png" alt="Домашний текстиль icon">
-                <span>Домашний текстиль</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Рубашка, Блузка, Туника">
-                <img src="./png/рубашка,блузка,туника.png" alt="Рубашка, Блузка, Туника icon">
-                <span>Рубашка, Блузка, Туника</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Футболки, Майки, Поло">
-                <img src="./png/футболки,майки,поло.png" alt="Футболки, Майки, Поло icon">
-                <span>Футболки, Майки, Поло</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Джемпер, Свитер, Худи">
-                <img src="./png/джемпер,свитер,худи.png" alt="Джемпер, Свитер, Худи icon">
-                <span>Джемпер, Свитер, Худи</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Пиджак мужской">
-                <img src="./png/пиджакмужской.png" alt="Пиджак мужской icon">
-                <span>Пиджак мужской</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Жакет женский">
-                <img src="./png/жакетженский.png" alt="Жакет женский icon">
-                <span>Жакет женский</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Парка, Пальто, Плащ">
-                <img src="./png/парка,пальто,плащ.png" alt="Парка, Пальто, Плащ icon">
-                <span>Парка, Пальто, Плащ</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Пуховик">
-                <img src="./png/пуховик.png" alt="Пуховик icon">
-                <span>Пуховик</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Дубленка">
-                <img src="./png/дубленка.png" alt="Дубленка icon">
-                <span>Дубленка</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Кожаные изделия">
-                <img src="./png/кожаныеизделия.png" alt="Кожаные изделия icon">
-                <span>Кожаные изделия</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Меховые изделия">
-                <img src="./png/меховыеизделия.png" alt="Меховые изделия icon">
-                <span>Меховые изделия</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Кожаный ремень">
-                <img src="./png/кожаныйремень.png" alt="Кожаный ремень icon">
-                <span>Кожаный ремень</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="Глажка и отпаривание">
-                <img src="./png/глажкаиотпаривание.png" alt="Глажка и отпаривание icon">
-                <span>Глажка и отпаривание</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
-            <button class="category-button category-btn" data-category="О нас.. 💬">
-                <img src="./png/онас..💬.png" alt="О нас.. 💬 icon">
-                <span>О нас.. 💬</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            </button>
+            <!-- Карточки будут генерироваться динамически -->
         </div>
     </div>
 
@@ -627,112 +243,135 @@
     </div>
 
     <script>
-        const categoryButtons = document.querySelectorAll('.category-button');
+        // Модальное окно
         const modalOverlay = document.getElementById('modalOverlay');
         const modal = document.getElementById('modal');
         const modalTitle = document.getElementById('modalTitle');
         const modalContent = document.getElementById('modalContent');
         const modalClose = document.getElementById('modalClose');
 
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', async (e) => {
-                // Проверяем, была ли нажата подкнопка
-                if (e.target.closest('.split-button')) {
-                    const isLeft = e.target.closest('.split-left');
-                    const category = button.getAttribute('data-category');
-                    const platform = isLeft ? 'Win' : 'Mac';
-                    modalTitle.textContent = `${category} (${platform})`;
-                    
-                    // Загружаем данные перед открытием модального окна
-                    modalContent.innerHTML = '<p>Загрузка...</p>';
-                    await loadServices(category, isLeft);
-                    
-                    modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
-                    document.body.classList.add('overflow-hidden');
-                    setTimeout(() => {
-                        modal.classList.remove('translate-y-full');
-                    }, 10);
-                }
-            });
-        });
-
-        modalClose.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) closeModal();
-        });
-
-        function closeModal() {
+        const closeModal = () => {
             modal.classList.add('translate-y-full');
             modalContent.scrollTop = 0;
             setTimeout(() => {
                 modalOverlay.classList.add('opacity-0', 'pointer-events-none');
                 document.body.classList.remove('overflow-hidden');
             }, 600);
-        }
+        };
 
-        async function loadServices(category, isLeft) {
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        // Загрузка услуг
+        const loadServices = async (category, isLeft) => {
             try {
                 const suffix = isLeft ? ' Win' : ' Mac';
-                const fileName = `${category}${suffix}.json`;
-                const response = await fetch(`./${fileName}`);
+                const response = await fetch(`./${category}${suffix}.json`);
                 const data = await response.json();
-                
-                modalContent.innerHTML = '';
-                data.services.forEach(service => {
-                    const serviceButton = document.createElement('div');
-                    serviceButton.className = 'w-full p-3 text-left bg-transparent border-none font-bold';
-                    serviceButton.textContent = service.name;
-                    modalContent.appendChild(serviceButton);
-
-                    service.subServices.forEach(subService => {
-                        const subServiceButton = document.createElement('div');
-                        subServiceButton.className = 'w-full p-3 mt-1 bg-[#262626] rounded-lg';
-                        subServiceButton.textContent = `${subService.name} - ${subService.price}`;
-                        modalContent.appendChild(subServiceButton);
-                    });
-
-                    const spacer = document.createElement('div');
-                    spacer.className = 'h-2';
-                    modalContent.appendChild(spacer);
-                });
+                modalContent.innerHTML = data.services.map(service => `
+                    <div class="w-full p-3 text-left bg-transparent border-none font-bold">${service.name}</div>
+                    ${service.subServices.map(sub => `
+                        <div class="w-full p-3 mt-1 bg-[#262626] rounded-lg">${sub.name} - ${sub.price}</div>
+                    `).join('')}
+                    <div class="h-2"></div>
+                `).join('');
             } catch (error) {
                 console.error('Ошибка загрузки услуг:', error);
                 modalContent.innerHTML = '<p>Ошибка загрузки данных</p>';
             }
-        }
+        };
 
-        // Функция для нормализации имени файла
-        function getIconSrc(category) {
-            return `./png/${category.toLowerCase().replace(/[\s,.]+/g, '')}.png`;
-        }
-        
-        // Добавляем иконки после загрузки DOM
-        document.addEventListener('DOMContentLoaded', () => {
-            categoryButtons.forEach(button => {
-                const category = button.getAttribute('data-category');
-                const img = button.querySelector('img');
-                img.src = getIconSrc(category);
-                img.alt = `${category} icon`;
-                img.style.display = 'block';
-                
-                img.onerror = () => {
-                    img.style.display = 'none';
-                };
+        // Шаблон карточки
+        const createCategoryButton = (category, icon) => {
+            const button = document.createElement('button');
+            button.className = 'category-button category-btn';
+            button.dataset.category = category;
+            button.innerHTML = `
+                <img src="./png/${icon}" alt="${category} icon">
+                <span>${category}</span>
+                <div class="split-button-container">
+                    <div class="split-button split-left">
+                        <svg width="32px" height="32px">
+                            <use href="#left-icon" fill="#f0f0f0"/>
+                        </svg>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="split-button split-right">
+                        <svg width="32px" height="32px">
+                            <use href="#right-icon" fill="#f0f0f0"/>
+                        </svg>
+                    </div>
+                </div>
+            `;
+            // Обработчик клика
+            button.addEventListener('click', async (e) => {
+                const splitButton = e.target.closest('.split-button');
+                if (!splitButton) return;
+                const isLeft = splitButton.classList.contains('split-left');
+                // Инкремент кликов
+                incrementClicks(category);
+                // Загрузка и открытие модалки
+                modalTitle.textContent = `${category} (${isLeft ? 'Win' : 'Mac'})`;
+                modalContent.innerHTML = '<p>Загрузка...</p>';
+                await loadServices(category, isLeft);
+                modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.classList.add('overflow-hidden');
+                setTimeout(() => modal.classList.remove('translate-y-full'), 10);
             });
-        });
-        
+            return button;
+        };
+
+        // Хранение кликов в localStorage
+        const getClicks = () => JSON.parse(localStorage.getItem('categoryClicks') || '{}');
+        const saveClicks = (clicks) => localStorage.setItem('categoryClicks', JSON.stringify(clicks));
+        const incrementClicks = (category) => {
+            const clicks = getClicks();
+            clicks[category] = (clicks[category] || 0) + 1;
+            saveClicks(clicks);
+            renderCategories(); // Перерендер с сортировкой
+        };
+
+        // Загрузка категорий из categories.json и рендер
+        const renderCategories = async () => {
+            try {
+                const response = await fetch('./categories.json');
+                const categories = await response.json(); // [{name: "...", icon: "..."}]
+                const clicks = getClicks();
+                // Сортировка: по кликам desc, затем по имени asc
+                const sortedCategories = categories.sort((a, b) => {
+                    const clicksA = clicks[a.name] || 0;
+                    const clicksB = clicks[b.name] || 0;
+                    return clicksB - clicksA || a.name.localeCompare(b.name);
+                });
+                const container = document.getElementById('categoriesContainer');
+                container.innerHTML = '';
+                sortedCategories.forEach(({name, icon}) => {
+                    const button = createCategoryButton(name, icon);
+                    container.appendChild(button);
+                });
+                categoryButtons = document.querySelectorAll('.category-button'); // Обновить для поиска
+            } catch (error) {
+                console.error('Ошибка загрузки категорий:', error);
+            }
+        };
+
+        let categoryButtons = [];
+
         // Полнотекстовый поиск
         const searchInput = document.getElementById('searchInput');
-        const categoriesContainer = document.getElementById('categoriesContainer');
-        const allCategories = Array.from(document.querySelectorAll('.category-button'));
-        
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
-        
-            allCategories.forEach(button => {
-                const spanText = button.querySelector('span').textContent.toLowerCase();
-                button.classList.toggle('hidden', !spanText.includes(searchTerm));
+            categoryButtons.forEach(button => {
+                const text = button.querySelector('span')?.textContent.toLowerCase() || '';
+                button.classList.toggle('hidden', searchTerm && !text.includes(searchTerm));
             });
+        });
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
         });
     </script>
 </body>
