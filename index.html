@@ -720,7 +720,7 @@
                 };
             });
         });
-
+        
         // Полнотекстовый поиск
         const searchInput = document.getElementById('searchInput');
         const categoriesContainer = document.getElementById('categoriesContainer');
@@ -728,15 +728,10 @@
         
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
-            
+        
             allCategories.forEach(button => {
                 const spanText = button.querySelector('span').textContent.toLowerCase();
-                
-                if (searchTerm === '' || spanText.includes(searchTerm)) {
-                    button.classList.remove('hidden');
-                } else {
-                    button.classList.add('hidden');
-                }
+                button.classList.toggle('hidden', !spanText.includes(searchTerm));
             });
         });
     </script>
