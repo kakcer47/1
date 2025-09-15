@@ -258,7 +258,7 @@
                 modalContent.innerHTML = data.services.map(service => `
                     <div class="w-full p-3 text-left bg-transparent border-none font-bold">${service.name}</div>
                     ${service.subServices.map(sub => `
-                        <div class="w-full p-3 mt-1 bg-[#262626] rounded-lg">${sub.name} - ${sub.price}</div>
+                        <div class="w-full p-3 mt-1 bg-[#e7e5db] rounded-lg">${sub.name} - ${sub.price}</div>
                     `).join('')}
                     <div class="h-2"></div>
                 `).join('');
