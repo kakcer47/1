@@ -3,355 +3,735 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stylish Antelope</title>
+    <title>Stylish Antelope 2.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        :root {
+            --color-bg-primary: #f5f4ed;
+            --color-bg-secondary: #e7e5db;
+            --color-bg-hover: #faf9f5;
+            --color-text-primary: #474744;
+            --color-text-secondary: #3d3d3a;
+            --color-text-placeholder: #858585;
+            --color-border: #6b7280;
+            --shadow-modal: 0 -4px 6px -1px rgba(195, 195, 196, 0.3), 
+                           0 -10px 15px -3px rgba(195, 195, 196, 0.2);
+            --transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-modal: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Rubik', sans-serif;
-            background-color: #f5f4ed !important;
-            color: #474744 !important;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-        .floating-header {
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Header Styles */
+        .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             backdrop-filter: blur(8px);
-            background: transparent;
+            -webkit-backdrop-filter: blur(8px);
+            background: rgba(245, 244, 237, 0.9);
             padding: 1.5rem;
             z-index: 100;
+            transition: var(--transition-default);
         }
-        .search-input {
-            background-color: #e7e5db;
-            border: none;
-            color: #3d3d3a;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px !important;
-        }
-        .hidden {
-            display: none !important;
-        }
-        .search-input::placeholder {
-            color: #858585;
-        }
-        .search-input:focus {
-            outline: none !important;
-        }
-        .main-content {
-            padding-top: 140px !important;
-        }
-        .button-container {
-            display: flex;
-            gap: 20px;
-        }
-        .button {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-        }
-        .button svg {
-            width: 100%;
-            height: 100%;
-        }
-        .modal-window {
-            background-color: #e7e5db !important;
-            color: #3d3d3a !important;
-            box-shadow: 0 -4px 6px -1px rgba(195, 195, 196, 0.3), 0 -10px 15px -3px rgba(195, 195, 196, 0.2) !important;
-            width: 100%;
-            max-width: 100%;
+
+        .header__container {
+            max-width: 640px;
             margin: 0 auto;
+        }
+
+        .header__title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        .search {
             position: relative;
-            border-radius: 8px !important;
-            overflow: hidden !important;
         }
-        .modal-header-custom {
-            background-color: #e7e5db !important;
-            color: #3d3d3a !important;
-        }
-        .modal-content-custom {
-            background-color: #e7e5db !important;
-            color: #e7e5db !important;
-        }
-        .modal-close-button {
-            width: 2.25rem;
-            height: 2.25rem;
-            background-color: #e7e5db;
+
+        .search__input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--color-bg-secondary);
+            border: 2px solid transparent;
             border-radius: 0.5rem;
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+            transition: var(--transition-default);
+        }
+
+        .search__input::placeholder {
+            color: var(--color-text-placeholder);
+        }
+
+        .search__input:focus {
+            outline: none;
+            border-color: var(--color-border);
+            background-color: var(--color-bg-hover);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 10rem 1.5rem 2rem;
+            max-width: 640px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        /* Category Card */
+        .category-card {
+            position: relative;
+            background-color: var(--color-bg-secondary);
+            border-radius: 0.5rem;
+            padding: 1rem 0.75rem;
+            cursor: pointer;
+            transition: var(--transition-default);
+            border: 2px solid transparent;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            background-color: var(--color-bg-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .category-card.hidden {
+            display: none;
+        }
+
+        .category-card__content {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            color: #6b7280;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.25rem;
-            font-weight: bold;
+            gap: 0.5rem;
+            pointer-events: none;
         }
-        .modal-close-button:hover {
-            background-color: #faf9f5;
+
+        .category-card__icon {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            transition: var(--transition-default);
         }
-        .category-btn {
-            width: 100%;
-            background-color: #e7e5db;
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 8px !important;
-            padding: 1rem 0.75rem !important;
-            transition: all 0.3s ease;
-            border-radius: 0.5rem;
-            border: none;
-            color: #3d3d3a;
-            cursor: pointer;
-            align-items: center !important;
-            justify-content: center !important;
-            position: relative;
+
+        .category-card__name {
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-align: center;
+            color: var(--color-text-secondary);
         }
-        .category-btn img {
-            width: 64px !important;
-            height: 64px !important;
-            object-fit: contain !important;
-        }
-        .category-btn:hover > img,
-        .category-btn:hover > span {
-            display: none;
-        }
-        .split-button-container {
-            display: none;
+
+        .category-card__actions {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            flex-direction: row;
+            inset: 0;
+            display: flex;
             align-items: center;
             justify-content: center;
             gap: 2px;
-            background-color: #e7e5db;
+            background-color: var(--color-bg-secondary);
             border-radius: 0.5rem;
             padding: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-default);
         }
-        .category-btn:hover .split-button-container {
-            display: flex;
+
+        .category-card:hover .category-card__actions {
+            opacity: 1;
+            visibility: visible;
         }
-        .split-button {
+
+        .category-card:hover .category-card__content {
+            opacity: 0;
+        }
+
+        .action-btn {
             flex: 1;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #e7e5db;
-            transition: all 0.3s ease;
-            border-radius: 0.5rem;
+            background-color: var(--color-bg-secondary);
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: var(--transition-default);
         }
-        .split-button:hover {
-            background-color: #faf9f5;
+
+        .action-btn:hover {
+            background-color: var(--color-bg-hover);
         }
-        .split-button svg {
+
+        .action-btn svg {
             width: 32px;
             height: 32px;
+            fill: var(--color-text-secondary);
+            transition: var(--transition-default);
         }
-        .split-button:hover svg use {
+
+        .action-btn:hover svg {
             fill: #0d1117;
+            transform: scale(1.1);
         }
-//        .divider {
-//            width: 0.5px;
-//           height: 80%;
-//            background-color: #3d3d3a;
-//        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            z-index: 110;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            max-height: 80vh;
+            background-color: var(--color-bg-secondary);
+            border-radius: 0.5rem 0.5rem 0 0;
+            box-shadow: var(--shadow-modal);
+            transform: translateY(100%);
+            transition: var(--transition-modal);
+            z-index: 120;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(107, 114, 128, 0.2);
+        }
+
+        .modal__title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+        }
+
+        .modal__close {
+            width: 2.25rem;
+            height: 2.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-bg-secondary);
+            border: 2px solid transparent;
+            border-radius: 0.5rem;
+            color: var(--color-border);
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-default);
+        }
+
+        .modal__close:hover {
+            background-color: var(--color-bg-hover);
+            border-color: var(--color-border);
+        }
+
+        .modal__content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        .modal__content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal__content::-webkit-scrollbar-track {
+            background: var(--color-bg-secondary);
+        }
+
+        .modal__content::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: 3px;
+        }
+
+        .service {
+            margin-bottom: 1.5rem;
+        }
+
+        .service__title {
+            font-weight: 700;
+            padding: 0.75rem;
+            color: var(--color-text-secondary);
+        }
+
+        .service__item {
+            padding: 0.75rem;
+            margin-top: 0.25rem;
+            background-color: var(--color-bg-hover);
+            border-radius: 0.5rem;
+            transition: var(--transition-default);
+        }
+
+        .service__item:hover {
+            background-color: white;
+            transform: translateX(4px);
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: var(--color-text-placeholder);
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 0.5rem;
+            border: 2px solid var(--color-border);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .error {
+            padding: 2rem;
+            text-align: center;
+            color: #dc2626;
+        }
+
+        /* Desktop Styles */
         @media (min-width: 1024px) {
-            .floating-header {
-                width: 33.33%;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .main-page {
-                width: 33.33%;
+            .header__container,
+            .main,
+            .modal {
+                max-width: 640px;
                 margin: 0 auto;
             }
-            .modal-overlay {
-                align-items: center;
+
+            .modal {
+                bottom: auto;
+                top: 50%;
+                left: 50%;
+                right: auto;
+                transform: translate(-50%, -50%) translateY(100%);
+                border-radius: 0.5rem;
             }
-            .modal-window {
-                width: 33.33% !important;
-                max-width: 33.33% !important;
-                position: fixed !important;
-                top: 50% !important;
-                left: 50% !important;
-                bottom: auto !important;
-                margin: 0 !important;
-                transform: translate(-50%, -50%) !important;
-                border-radius: 8px !important;
+
+            .modal-overlay.active .modal {
+                transform: translate(-50%, -50%) translateY(0);
             }
+        }
+
+        /* No Results Message */
+        .no-results {
+            grid-column: 1 / -1;
+            padding: 2rem;
+            text-align: center;
+            color: var(--color-text-placeholder);
         }
     </style>
 </head>
-<body class="bg-[#444441] text-[#faf9f5]">
+<body>
+    <!-- SVG Icons -->
     <svg style="display: none;">
         <defs>
-            <symbol id="left-icon" viewBox="0 0 1920 1920">
+            <symbol id="icon-windows" viewBox="0 0 1920 1920">
                 <path d="M1863.53 1016.437c31.171 0 56.47 25.299 56.47 56.47v790.589c0 16.376-7.115 31.849-19.313 42.465-10.39 9.149-23.605 14.005-37.158 14.005-2.484 0-5.082-.113-7.567-.452l-903.53-123.331c-28.008-3.84-48.903-27.784-48.903-56.02v-667.256c0-31.171 25.3-56.47 56.471-56.47Zm-1129.412 0c31.171 0 56.47 25.299 56.47 56.47v634.504c0 16.376-7.115 31.85-19.426 42.579-10.39 9.035-23.491 13.891-37.044 13.891-2.485 0-5.196-.113-7.68-.564L48.79 1669.35C20.78 1665.51 0 1641.68 0 1613.444v-540.537c0-31.171 25.299-56.47 56.47-56.47Zm-7.726-859.855c16.151-2.372 32.415 2.597 44.725 13.327 12.424 10.73 19.426 26.315 19.426 42.579V846.99c0 31.285-25.186 56.47-56.47 56.47H56.424c-31.171 0-56.47-25.185-56.47-56.47V306.455c0-28.123 20.781-52.066 48.79-55.906ZM1855.974.474c16.15-2.033 32.414 2.71 44.724 13.44 12.198 10.73 19.313 26.203 19.313 42.466v790.588c0 31.285-25.299 56.471-56.47 56.471H960.01c-31.171 0-56.47-25.186-56.47-56.47V179.711c0-28.235 20.78-52.066 48.903-55.906Z" fill-rule="evenodd"/>
             </symbol>
-            <symbol id="right-icon" viewBox="0 0 1920 1920">
+            <symbol id="icon-apple" viewBox="0 0 1920 1920">
                 <path d="M972.669 550.592c74.37 0 213.815-103.393 360.63-88.315 61.446 2.608 233.881 25.282 344.644 190.462-8.843 5.895-205.88 122.78-203.5 366.184 2.495 290.908 249.982 387.499 252.816 388.973-2.268 6.575-39.566 137.857-130.489 273.448-78.565 117.111-159.965 233.655-288.3 236.036-126.18 2.494-166.767-76.298-311.087-76.298-144.206 0-189.214 73.917-308.706 78.792-123.913 4.762-218.237-126.52-297.37-243.178-161.892-238.87-285.578-674.665-119.491-968.86 82.42-146.133 229.8-238.643 389.879-241.024 121.646-2.267 236.603 83.78 310.974 83.78ZM1367.75 0c13.038 110.536-34.69 221.525-105.093 301.45-70.743 79.813-186.494 141.94-299.977 133.55-15.305-108.495 41.947-221.184 107.248-292.154C1142.939 63.034 1266.172 3.855 1367.75 0Z" fill-rule="evenodd"/>
             </symbol>
         </defs>
     </svg>
 
-    <div class="floating-header">
-        <h1 class="text-2xl font-bold text-left mb-4">Stylish Antelope 2.0</h1>
-        <input type="text" 
-               class="search-input" 
-               placeholder="Поиск.." 
-               id="searchInput">
-    </div>
-    <div class="main-page p-6" style="padding-top: 150px;">
-        <div class="grid grid-cols-2 gap-2" id="categoriesContainer">
-            <!-- Карточки генерируются динамически -->
-        </div>
-    </div>
-
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-0 transition-opacity duration-500 pointer-events-none z-[110]"
-        id="modalOverlay">
-        <div class="modal modal-window fixed bottom-0 transform translate-y-full transition-transform duration-600 ease-[cubic-bezier(0.25,0.8,0.25,1)] max-h-[80vh] z-[120] flex flex-col"
-            id="modal">
-            <div class="modal-header-custom flex justify-between items-center p-4 border-b border-gray-300">
-                <h2 class="modal-title text-lg font-semibold" id="modalTitle"></h2>
-                <button class="modal-close-button" id="modalClose">×</button>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <h1 class="header__title">Stylish Antelope 2.0</h1>
+            <div class="search">
+                <input 
+                    type="text" 
+                    class="search__input" 
+                    placeholder="Поиск..."
+                    id="searchInput"
+                    autocomplete="off"
+                >
             </div>
-            <div class="modal-content-custom flex-1 overflow-y-auto p-6 space-y-2" id="modalContent"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="categories" id="categoriesContainer">
+            <!-- Categories will be rendered here -->
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <div class="modal__header">
+                <h2 class="modal__title" id="modalTitle"></h2>
+                <button class="modal__close" id="modalClose" aria-label="Закрыть">×</button>
+            </div>
+            <div class="modal__content" id="modalContent"></div>
         </div>
     </div>
 
     <script>
-        // Модальное окно
-        const modalOverlay = document.getElementById('modalOverlay');
-        const modal = document.getElementById('modal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalContent = document.getElementById('modalContent');
-        const modalClose = document.getElementById('modalClose');
+        'use strict';
 
-        const closeModal = () => {
-            modal.classList.add('translate-y-full');
-            modalContent.scrollTop = 0;
-            setTimeout(() => {
-                modalOverlay.classList.add('opacity-0', 'pointer-events-none');
-                document.body.classList.remove('overflow-hidden');
-            }, 600);
+        // App State Management
+        const AppState = {
+            categories: [],
+            filteredCategories: [],
+            clicks: {},
+            isModalOpen: false,
+            currentCategory: null,
+            currentPlatform: null
         };
 
-        modalClose.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) closeModal();
-        });
+        // Constants
+        const STORAGE_KEY = 'categoryClicks';
+        const PLATFORMS = {
+            WIN: { name: 'Win', icon: 'icon-windows' },
+            MAC: { name: 'Mac', icon: 'icon-apple' }
+        };
 
-        // Загрузка услуг
-        const loadServices = async (category, isLeft) => {
-            try {
-                const suffix = isLeft ? 'Win' : 'Mac';
-                const response = await fetch(`./${category}/${suffix}.json`);
-                const data = await response.json();
-                modalContent.innerHTML = data.services.map(service => `
-                    <div class="w-full p-3 text-left bg-transparent border-none font-bold">${service.name}</div>
-                    ${service.subServices.map(sub => `
-                        <div class="w-full p-3 mt-1 bg-[#e7e5db] rounded-lg">${sub.name} - ${sub.price}</div>
-                    `).join('')}
-                    <div class="h-2"></div>
-                `).join('');
-            } catch (error) {
-                console.error('Ошибка загрузки услуг:', error);
-                modalContent.innerHTML = '<p>Ошибка загрузки данных</p>';
+        // DOM Elements
+        const DOM = {
+            searchInput: document.getElementById('searchInput'),
+            categoriesContainer: document.getElementById('categoriesContainer'),
+            modalOverlay: document.getElementById('modalOverlay'),
+            modal: document.getElementById('modal'),
+            modalTitle: document.getElementById('modalTitle'),
+            modalContent: document.getElementById('modalContent'),
+            modalClose: document.getElementById('modalClose')
+        };
+
+        // Storage Service
+        const StorageService = {
+            getClicks() {
+                try {
+                    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+                } catch (e) {
+                    console.error('Error reading from localStorage:', e);
+                    return {};
+                }
+            },
+
+            saveClicks(clicks) {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(clicks));
+                } catch (e) {
+                    console.error('Error saving to localStorage:', e);
+                }
+            },
+
+            incrementClicks(category) {
+                const clicks = this.getClicks();
+                clicks[category] = (clicks[category] || 0) + 1;
+                this.saveClicks(clicks);
+                AppState.clicks = clicks;
             }
         };
 
-        // Шаблон карточки
-        const createCategoryButton = (category) => {
-            const button = document.createElement('button');
-            button.className = 'category-button category-btn';
-            button.dataset.category = category;
-            button.innerHTML = `
-                <img src="./${category}/1.png" alt="${category} icon">
-                <span>${category}</span>
-                <div class="split-button-container">
-                    <div class="split-button split-left">
-                        <svg width="32px" height="32px">
-                            <use href="#left-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="split-button split-right">
-                        <svg width="32px" height="32px">
-                            <use href="#right-icon" fill="#f0f0f0"/>
-                        </svg>
-                    </div>
-                </div>
-            `;
-            button.addEventListener('click', async (e) => {
-                const splitButton = e.target.closest('.split-button');
-                if (!splitButton) return;
-                const isLeft = splitButton.classList.contains('split-left');
-                incrementClicks(category);
-                modalTitle.textContent = `${category} (${isLeft ? 'Win' : 'Mac'})`;
-                modalContent.innerHTML = '<p>Загрузка...</p>';
-                await loadServices(category, isLeft);
-                modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
-                document.body.classList.add('overflow-hidden');
-                setTimeout(() => modal.classList.remove('translate-y-full'), 10);
-            });
-            button.querySelector('img').onerror = () => button.querySelector('img').style.display = 'none';
-            return button;
+        // API Service
+        const ApiService = {
+            async fetchCategories() {
+                try {
+                    const response = await fetch('./categories.json');
+                    if (!response.ok) throw new Error('Failed to fetch categories');
+                    return await response.json();
+                } catch (error) {
+                    console.error('Error fetching categories:', error);
+                    return [];
+                }
+            },
+
+            async fetchServices(category, platform) {
+                try {
+                    const url = `./${category}/${platform}.json`;
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`Failed to fetch services from ${url}`);
+                    return await response.json();
+                } catch (error) {
+                    console.error('Error fetching services:', error);
+                    return null;
+                }
+            }
         };
 
-        // Хранение и сортировка кликов
-        const getClicks = () => JSON.parse(localStorage.getItem('categoryClicks') || '{}');
-        const saveClicks = (clicks) => localStorage.setItem('categoryClicks', JSON.stringify(clicks));
-        const incrementClicks = (category) => {
-            const clicks = getClicks();
-            clicks[category] = (clicks[category] || 0) + 1;
-            saveClicks(clicks);
-            renderCategories();
+        // Modal Controller
+        const ModalController = {
+            open(title) {
+                AppState.isModalOpen = true;
+                DOM.modalTitle.textContent = title;
+                DOM.modalOverlay.classList.add('active');
+                document.body.classList.add('modal-open');
+            },
+
+            close() {
+                AppState.isModalOpen = false;
+                DOM.modalOverlay.classList.remove('active');
+                document.body.classList.remove('modal-open');
+                DOM.modalContent.scrollTop = 0;
+                
+                // Clear content after animation
+                setTimeout(() => {
+                    DOM.modalContent.innerHTML = '';
+                    DOM.modalTitle.textContent = '';
+                }, 600);
+            },
+
+            setContent(html) {
+                DOM.modalContent.innerHTML = html;
+            },
+
+            showLoading() {
+                this.setContent('<div class="loading">Загрузка данных</div>');
+            },
+
+            showError(message = 'Произошла ошибка при загрузке данных') {
+                this.setContent(`<div class="error">${message}</div>`);
+            }
         };
 
-        // Загрузка и рендер категорий
-        const renderCategories = async () => {
-            try {
-                const response = await fetch('./categories.json');
-                const categories = await response.json();
-                const clicks = getClicks();
-                const sortedCategories = categories.sort((a, b) => {
-                    const clicksA = clicks[a] || 0;
-                    const clicksB = clicks[b] || 0;
-                    return clicksB - clicksA || a.localeCompare(b);
+        // UI Renderer
+        const UIRenderer = {
+            createCategoryCard(category) {
+                const card = document.createElement('div');
+                card.className = 'category-card';
+                card.dataset.category = category;
+                
+                card.innerHTML = `
+                    <div class="category-card__content">
+                        <img 
+                            src="./${category}/1.png" 
+                            alt="${category}" 
+                            class="category-card__icon"
+                            onerror="this.style.display='none'"
+                        >
+                        <span class="category-card__name">${category}</span>
+                    </div>
+                    <div class="category-card__actions">
+                        <button class="action-btn" data-platform="WIN" aria-label="Windows">
+                            <svg><use href="#icon-windows"/></svg>
+                        </button>
+                        <button class="action-btn" data-platform="MAC" aria-label="Mac">
+                            <svg><use href="#icon-apple"/></svg>
+                        </button>
+                    </div>
+                `;
+
+                // Add event listeners
+                const actionButtons = card.querySelectorAll('.action-btn');
+                actionButtons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.handleCategoryClick(category, btn.dataset.platform);
+                    });
                 });
-                const container = document.getElementById('categoriesContainer');
+
+                return card;
+            },
+
+            async handleCategoryClick(category, platform) {
+                const platformName = PLATFORMS[platform].name;
+                
+                // Track click
+                StorageService.incrementClicks(category);
+                
+                // Open modal
+                ModalController.open(`${category} (${platformName})`);
+                ModalController.showLoading();
+                
+                // Fetch and display services
+                const data = await ApiService.fetchServices(category, platformName);
+                
+                if (data && data.services) {
+                    const html = data.services.map(service => `
+                        <div class="service">
+                            <div class="service__title">${service.name}</div>
+                            ${service.subServices.map(sub => `
+                                <div class="service__item">
+                                    ${sub.name} - ${sub.price}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `).join('');
+                    
+                    ModalController.setContent(html);
+                } else {
+                    ModalController.showError();
+                }
+                
+                // Re-render categories to update order
+                this.renderCategories();
+            },
+
+            renderCategories() {
+                const container = DOM.categoriesContainer;
                 container.innerHTML = '';
-                sortedCategories.forEach(category => {
-                    container.appendChild(createCategoryButton(category));
+                
+                if (AppState.filteredCategories.length === 0) {
+                    container.innerHTML = '<div class="no-results">Ничего не найдено</div>';
+                    return;
+                }
+                
+                AppState.filteredCategories.forEach(category => {
+                    container.appendChild(this.createCategoryCard(category));
                 });
-                categoryButtons = document.querySelectorAll('.category-button');
-            } catch (error) {
-                console.error('Ошибка загрузки категорий:', error);
+            },
+
+            sortCategories(categories) {
+                return [...categories].sort((a, b) => {
+                    const clicksA = AppState.clicks[a] || 0;
+                    const clicksB = AppState.clicks[b] || 0;
+                    
+                    if (clicksB !== clicksA) {
+                        return clicksB - clicksA;
+                    }
+                    
+                    return a.localeCompare(b, 'ru');
+                });
             }
         };
 
-        let categoryButtons = [];
+        // Search Controller
+        const SearchController = {
+            init() {
+                DOM.searchInput.addEventListener('input', this.debounce(this.handleSearch, 300));
+            },
 
-        // Полнотекстовый поиск
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase().trim();
-            categoryButtons.forEach(button => {
-                const text = button.querySelector('span')?.textContent.toLowerCase() || '';
-                button.classList.toggle('hidden', searchTerm && !text.includes(searchTerm));
-            });
-        });
+            handleSearch(e) {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                
+                if (searchTerm === '') {
+                    AppState.filteredCategories = AppState.categories;
+                } else {
+                    AppState.filteredCategories = AppState.categories.filter(category => 
+                        category.toLowerCase().includes(searchTerm)
+                    );
+                }
+                
+                UIRenderer.renderCategories();
+            },
 
-        // Инициализация
-        document.addEventListener('DOMContentLoaded', renderCategories);
+            debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+        };
+
+        // App Initialization
+        const App = {
+            async init() {
+                try {
+                    // Load clicks from storage
+                    AppState.clicks = StorageService.getClicks();
+                    
+                    // Fetch categories
+                    const categories = await ApiService.fetchCategories();
+                    AppState.categories = UIRenderer.sortCategories(categories);
+                    AppState.filteredCategories = AppState.categories;
+                    
+                    // Render UI
+                    UIRenderer.renderCategories();
+                    
+                    // Initialize controllers
+                    SearchController.init();
+                    this.initModalEvents();
+                    
+                } catch (error) {
+                    console.error('Error initializing app:', error);
+                    DOM.categoriesContainer.innerHTML = '<div class="error">Ошибка загрузки приложения</div>';
+                }
+            },
+
+            initModalEvents() {
+                // Close modal events
+                DOM.modalClose.addEventListener('click', () => ModalController.close());
+                
+                DOM.modalOverlay.addEventListener('click', (e) => {
+                    if (e.target === DOM.modalOverlay) {
+                        ModalController.close();
+                    }
+                });
+                
+                // ESC key to close modal
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && AppState.isModalOpen) {
+                        ModalController.close();
+                    }
+                });
+            }
+        };
+
+        // Start the app when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => App.init());
+        } else {
+            App.init();
+        }
     </script>
 </body>
 </html>
