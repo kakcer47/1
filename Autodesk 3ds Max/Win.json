@@ -28,7 +28,7 @@
                 {"name": "V-Ray", "web": "https://claude.ai", "but": "1"},
                 {"name": "Плагины", "web": "https://claude.ai", "but": "1"}
             ]
-        }
+        },
         {
             "name": "Помощь в установке",
             "subServices": [
