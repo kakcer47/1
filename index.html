@@ -626,7 +626,8 @@
                             <div class="service__title">${service.name}</div>
                             ${service.subServices.map(sub => `
                                 <div class="service__item" ${sub.web ? `onclick="window.open('${sub.web}', '_blank')"` : ''} ${sub.web ? 'style="cursor: pointer;"' : ''}>
-                                    ${sub.name}${sub.but === "1" ? '<svg style="width: 16px; height: 16px; margin-left: 8px; display: inline-block;"><use href="#dhig--icons--actions--download"/></svg>' : ''}
+                                    <div class="service__item-text">${sub.name}</div>
+                                    ${sub.but === "1" ? '<div class="service__item-icon"><svg style="width: 16px; height: 16px;"><use href="#dhig--icons--actions--download"/></svg></div>' : ''}
                                 </div>
                             `).join('')}
                         </div>
