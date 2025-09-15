@@ -211,7 +211,7 @@
     </div>
     <div class="main-page p-6" style="padding-top: 150px;">
         <div class="grid grid-cols-2 gap-2" id="categoriesContainer">
-            <!-- Карточки будут генерироваться динамически -->
+            <!-- Карточки генерируются динамически -->
         </div>
     </div>
 
@@ -267,8 +267,8 @@
         // Загрузка услуг
         const loadServices = async (category, isLeft) => {
             try {
-                const suffix = isLeft ? ' Win' : ' Mac';
-                const response = await fetch(`./${category}${suffix}.json`);
+                const suffix = isLeft ? 'Win' : 'Mac';
+                const response = await fetch(`./${category}/${suffix}.json`);
                 const data = await response.json();
                 modalContent.innerHTML = data.services.map(service => `
                     <div class="w-full p-3 text-left bg-transparent border-none font-bold">${service.name}</div>
@@ -284,12 +284,12 @@
         };
 
         // Шаблон карточки
-        const createCategoryButton = (category, icon) => {
+        const createCategoryButton = (category) => {
             const button = document.createElement('button');
             button.className = 'category-button category-btn';
             button.dataset.category = category;
             button.innerHTML = `
-                <img src="./png/${icon}" alt="${category} icon">
+                <img src="./${category}/1.png" alt="${category} icon">
                 <span>${category}</span>
                 <div class="split-button-container">
                     <div class="split-button split-left">
@@ -305,14 +305,11 @@
                     </div>
                 </div>
             `;
-            // Обработчик клика
             button.addEventListener('click', async (e) => {
                 const splitButton = e.target.closest('.split-button');
                 if (!splitButton) return;
                 const isLeft = splitButton.classList.contains('split-left');
-                // Инкремент кликов
                 incrementClicks(category);
-                // Загрузка и открытие модалки
                 modalTitle.textContent = `${category} (${isLeft ? 'Win' : 'Mac'})`;
                 modalContent.innerHTML = '<p>Загрузка...</p>';
                 await loadServices(category, isLeft);
@@ -320,38 +317,37 @@
                 document.body.classList.add('overflow-hidden');
                 setTimeout(() => modal.classList.remove('translate-y-full'), 10);
             });
+            button.querySelector('img').onerror = () => button.querySelector('img').style.display = 'none';
             return button;
         };
 
-        // Хранение кликов в localStorage
+        // Хранение и сортировка кликов
         const getClicks = () => JSON.parse(localStorage.getItem('categoryClicks') || '{}');
         const saveClicks = (clicks) => localStorage.setItem('categoryClicks', JSON.stringify(clicks));
         const incrementClicks = (category) => {
             const clicks = getClicks();
             clicks[category] = (clicks[category] || 0) + 1;
             saveClicks(clicks);
-            renderCategories(); // Перерендер с сортировкой
+            renderCategories();
         };
 
-        // Загрузка категорий из categories.json и рендер
+        // Загрузка и рендер категорий
         const renderCategories = async () => {
             try {
                 const response = await fetch('./categories.json');
-                const categories = await response.json(); // [{name: "...", icon: "..."}]
+                const categories = await response.json();
                 const clicks = getClicks();
-                // Сортировка: по кликам desc, затем по имени asc
                 const sortedCategories = categories.sort((a, b) => {
-                    const clicksA = clicks[a.name] || 0;
-                    const clicksB = clicks[b.name] || 0;
-                    return clicksB - clicksA || a.name.localeCompare(b.name);
+                    const clicksA = clicks[a] || 0;
+                    const clicksB = clicks[b] || 0;
+                    return clicksB - clicksA || a.localeCompare(b);
                 });
                 const container = document.getElementById('categoriesContainer');
                 container.innerHTML = '';
-                sortedCategories.forEach(({name, icon}) => {
-                    const button = createCategoryButton(name, icon);
-                    container.appendChild(button);
+                sortedCategories.forEach(category => {
+                    container.appendChild(createCategoryButton(category));
                 });
-                categoryButtons = document.querySelectorAll('.category-button'); // Обновить для поиска
+                categoryButtons = document.querySelectorAll('.category-button');
             } catch (error) {
                 console.error('Ошибка загрузки категорий:', error);
             }
@@ -369,10 +365,8 @@
             });
         });
 
-        // Инициализация при загрузке
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCategories();
-        });
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', renderCategories);
     </script>
 </body>
 </html>
