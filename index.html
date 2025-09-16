@@ -339,95 +339,149 @@
             height: 100%;
             left: -12.5%;
         }
+
+        /* Анимации для спиралей Фибоначчи */
+        @keyframes fibonacciSpiral {
+            0% {
+                stroke-dasharray: 0 1000;
+                stroke-dashoffset: 0;
+                transform: rotate(0deg) scale(1);
+                opacity: 0.3;
+                stroke-width: 2;
+            }
+            25% {
+                stroke-dasharray: 100 900;
+                stroke-dashoffset: -100;
+                transform: rotate(90deg) scale(1.2);
+                opacity: 0.7;
+                stroke-width: 3;
+            }
+            50% {
+                stroke-dasharray: 300 700; /* Фибоначчи: 1+2+3 */
+                stroke-dashoffset: -300;
+                transform: rotate(180deg) scale(1.5);
+                opacity: 1;
+                stroke-width: 4;
+            }
+            75% {
+                stroke-dasharray: 500 500; /* Фибоначчи: 1+2+3+5 */
+                stroke-dashoffset: -500;
+                transform: rotate(270deg) scale(1.2);
+                opacity: 0.7;
+                stroke-width: 3;
+            }
+            100% {
+                stroke-dasharray: 0 1000;
+                stroke-dashoffset: -1000;
+                transform: rotate(360deg) scale(1);
+                opacity: 0.3;
+                stroke-width: 2;
+            }
+        }
+
+        @keyframes flowContinuation {
+            0% {
+                stroke-dasharray: 0 2000;
+                stroke-dashoffset: 0;
+                transform: translateX(0);
+                opacity: 0.3;
+            }
+            50% {
+                stroke-dasharray: 1000 1000;
+                stroke-dashoffset: -1000;
+                transform: translateX(200px);
+                opacity: 0.8;
+            }
+            100% {
+                stroke-dasharray: 0 2000;
+                stroke-dashoffset: -2000;
+                transform: translateX(400px);
+                opacity: 0.3;
+            }
+        }
         
         /* Основные потоки - самые жирные */
         .main-flow {
             fill: none;
             stroke-width: 4.5;
             stroke-linecap: round;
-            animation: mainFlow 20s infinite ease-in-out;
+            animation: fibonacciSpiral 10s infinite ease-in-out;
         }
-        
+
         .counter-flow {
             fill: none;
             stroke-width: 4;
             stroke-linecap: round;
-            animation: counterFlow 18s infinite ease-in-out;
+            animation: fibonacciSpiral 12s infinite ease-in-out reverse;
         }
-        
-        /* Спирали */
+
         .spiral-1, .spiral-2 {
             fill: none;
             stroke-width: 3.5;
             stroke-linecap: round;
-            animation: spiralFlow 8s infinite ease-in-out;
+            animation: fibonacciSpiral 8s infinite ease-in-out;
         }
-        
+
         .spiral-2 {
             animation-delay: -4s;
-            animation-duration: 6s;
         }
-        
-        /* Средние потоки */
+
         .mid-flow-1, .mid-flow-2 {
             fill: none;
             stroke-width: 3;
             stroke-linecap: round;
-            animation: midFlow 15s infinite ease-in-out;
+            animation: flowContinuation 15s infinite ease-in-out;
         }
-        
+
         .mid-flow-2 {
             animation-delay: -7.5s;
         }
-        
-        /* Завихрения */
+
         .vortex-1, .vortex-2, .vortex-3 {
             fill: none;
             stroke-width: 2.5;
             stroke-linecap: round;
-            animation: vortexFlow 5s infinite ease-in-out;
+            animation: fibonacciSpiral 6s infinite ease-in-out;
         }
-        
+
         .vortex-2 {
-            animation-delay: -1.6s;
+            animation-delay: -2s;
         }
-        
+
         .vortex-3 {
-            animation-delay: -3.3s;
+            animation-delay: -4s;
         }
-        
-        /* Тонкие потоки */
+
         .thin-flow-1, .thin-flow-2, .thin-flow-3 {
             fill: none;
             stroke-width: 2;
             stroke-linecap: round;
-            animation: thinFlow 12s infinite ease-in-out;
+            animation: flowContinuation 12s infinite ease-in-out;
         }
-        
+
         .thin-flow-2 {
             animation-delay: -4s;
         }
-        
+
         .thin-flow-3 {
             animation-delay: -8s;
         }
-        
-        /* Микро завихрения */
+
         .micro-vortex-1, .micro-vortex-2, .micro-vortex-3, .micro-vortex-4 {
             fill: none;
             stroke-width: 1.5;
             stroke-linecap: round;
-            animation: microVortex 3s infinite ease-in-out;
+            animation: fibonacciSpiral 4s infinite ease-in-out;
         }
-        
+
         .micro-vortex-2 {
             animation-delay: -1s;
         }
-        
+
         .micro-vortex-3 {
             animation-delay: -2s;
         }
-        
+
         .micro-vortex-4 {
             animation-delay: -0.5s;
         }
@@ -803,45 +857,28 @@
                     
                     <!-- Первый слой - основные потоки -->
                     <g class="flow-layer-1">
-                        <!-- Главный поток с завихрениями -->
-                        <path class="flow-line main-flow" stroke="url(#flowGrad1)" d="M-100,150 Q50,80 150,140 C200,120 220,160 250,140 C280,120 300,180 350,160 Q380,140 420,170 C450,200 480,140 520,180 C560,220 590,120 650,160 C680,180 720,100 750,140 Q800,180 850,120 C900,80 920,160 980,140 Q1050,120 1150,180" />
-                        
-                        <!-- Встречный поток -->
-                        <path class="flow-line counter-flow" stroke="url(#flowGrad1)" d="M1100,300 Q950,250 850,320 C800,350 780,280 750,320 C720,360 700,280 650,320 Q620,360 580,330 C550,300 520,380 480,340 C440,300 410,400 350,360 C320,340 280,420 250,380 Q200,340 150,400 C100,440 80,360 20,400 Q-50,440 -150,380" />
-                        
-                        <!-- Спиральные завихрения -->
-                        <path class="flow-line spiral-1" stroke="url(#flowGrad1)" d="M300,250 C320,230 340,270 360,250 C380,230 360,210 340,230 C320,250 340,270 360,250 C380,230 400,270 420,250 C440,230 420,210 400,230 C380,250 400,270 420,250" />
-                        
-                        <path class="flow-line spiral-2" stroke="url(#flowGrad1)" d="M700,350 C720,330 740,370 760,350 C780,330 760,310 740,330 C720,350 740,370 760,350 C780,330 800,370 820,350 C840,330 820,310 800,330 C780,350 800,370 820,350" />
+                        <path class="flow-line main-flow" stroke="url(#flowGrad1)" d="M500,300 A50,50 0 0,1 550,350 A100,100 0 0,1 600,300 A150,150 0 0,1 650,350 A200,200 0 0,1 700,300" />
+                        <path class="flow-line counter-flow" stroke="url(#flowGrad1)" d="M500,300 A50,50 0 0,0 450,350 A100,100 0 0,0 400,300 A150,150 0 0,0 350,350 A200,200 0 0,0 300,300" />
+                        <path class="flow-line spiral-1" stroke="url(#flowGrad1)" d="M600,200 A20,20 0 0,1 620,220 A40,40 0 0,1 640,200 A60,60 0 0,1 660,220" />
+                        <path class="flow-line spiral-2" stroke="url(#flowGrad1)" d="M400,400 A20,20 0 0,0 380,420 A40,40 0 0,0 360,400 A60,60 0 0,0 340,420" />
                     </g>
                     
-                    <!-- Второй слой - средние потоки -->
                     <g class="flow-layer-2">
-                        <path class="flow-line mid-flow-1" stroke="url(#flowGrad2)" d="M-80,200 Q70,150 170,210 C220,240 250,180 300,220 C350,260 380,200 430,240 Q480,280 530,220 C580,180 610,260 660,220 C710,180 740,260 790,220 Q840,180 890,240 C940,280 970,220 1020,260 Q1070,300 1170,240" />
-                        
-                        <path class="flow-line mid-flow-2" stroke="url(#flowGrad2)" d="M-60,400 Q40,350 140,420 C190,450 220,390 270,430 C320,470 350,410 400,450 Q450,490 500,430 C550,390 580,470 630,430 C680,390 710,470 760,430 Q810,390 860,450 C910,490 940,430 990,470 Q1040,510 1140,450" />
-                        
-                        <!-- Дополнительные завихрения -->
-                        <path class="flow-line vortex-1" stroke="url(#flowGrad2)" d="M200,180 C215,165 230,195 245,180 C260,165 245,150 230,165 C215,180 230,195 245,180 C260,165 275,195 290,180" />
-                        
-                        <path class="flow-line vortex-2" stroke="url(#flowGrad2)" d="M500,320 C515,305 530,335 545,320 C560,305 545,290 530,305 C515,320 530,335 545,320 C560,305 575,335 590,320" />
-                        
-                        <path class="flow-line vortex-3" stroke="url(#flowGrad2)" d="M800,280 C815,265 830,295 845,280 C860,265 845,250 830,265 C815,280 830,295 845,280 C860,265 875,295 890,280" />
+                        <path class="flow-line mid-flow-1" stroke="url(#flowGrad2)" d="M100,100 Q150,50 200,100 Q250,150 300,100 Q350,50 400,100" />
+                        <path class="flow-line mid-flow-2" stroke="url(#flowGrad2)" d="M800,500 Q750,450 700,500 Q650,550 600,500 Q550,450 500,500" />
+                        <path class="flow-line vortex-1" stroke="url(#flowGrad2)" d="M200,200 A30,30 0 0,1 230,230 A50,50 0 0,1 200,200" />
+                        <path class="flow-line vortex-2" stroke="url(#flowGrad2)" d="M500,500 A30,30 0 0,0 470,470 A50,50 0 0,0 500,500" />
+                        <path class="flow-line vortex-3" stroke="url(#flowGrad2)" d="M800,200 A30,30 0 0,1 830,230 A50,50 0 0,1 800,200" />
                     </g>
                     
-                    <!-- Третий слой - тонкие потоки -->
                     <g class="flow-layer-3">
-                        <path class="flow-line thin-flow-1" stroke="url(#flowGrad3)" d="M-120,100 Q-20,60 80,120 C130,150 160,90 210,130 C260,170 290,110 340,150 Q390,190 440,130 C490,90 520,170 570,130 C620,90 650,170 700,130 Q750,90 800,150 C850,190 880,130 930,170 Q980,210 1080,150" />
-                        
-                        <path class="flow-line thin-flow-2" stroke="url(#flowGrad3)" d="M-90,480 Q10,440 110,500 C160,530 190,470 240,510 C290,550 320,490 370,530 Q420,570 470,510 C520,470 550,550 600,510 C650,470 680,550 730,510 Q780,470 830,530 C880,570 910,510 960,550 Q1010,590 1110,530" />
-                        
-                        <path class="flow-line thin-flow-3" stroke="url(#flowGrad3)" d="M-50,320 Q50,280 150,340 C200,370 230,310 280,350 C330,390 360,330 410,370 Q460,410 510,350 C560,310 590,390 640,350 C690,310 720,390 770,350 Q820,310 870,370 C920,410 950,350 1000,390 Q1050,430 1150,370" />
-                        
-                        <!-- Микро завихрения -->
-                        <path class="flow-line micro-vortex-1" stroke="url(#flowGrad3)" d="M150,220 C160,210 170,230 180,220 C190,210 180,200 170,210 C160,220 170,230 180,220" />
-                        <path class="flow-line micro-vortex-2" stroke="url(#flowGrad3)" d="M400,380 C410,370 420,390 430,380 C440,370 430,360 420,370 C410,380 420,390 430,380" />
-                        <path class="flow-line micro-vortex-3" stroke="url(#flowGrad3)" d="M750,200 C760,190 770,210 780,200 C790,190 780,180 770,190 C760,200 770,210 780,200" />
-                        <path class="flow-line micro-vortex-4" stroke="url(#flowGrad3)" d="M600,450 C610,440 620,460 630,450 C640,440 630,430 620,440 C610,450 620,460 630,450" />
+                        <path class="flow-line thin-flow-1" stroke="url(#flowGrad3)" d="M50,50 Q100,0 150,50 Q200,100 250,50 Q300,0 350,50" />
+                        <path class="flow-line thin-flow-2" stroke="url(#flowGrad3)" d="M700,550 Q650,500 600,550 Q550,600 500,550 Q450,500 400,550" />
+                        <path class="flow-line thin-flow-3" stroke="url(#flowGrad3)" d="M300,300 Q350,250 400,300 Q450,350 500,300 Q550,250 600,300" />
+                        <path class="flow-line micro-vortex-1" stroke="url(#flowGrad3)" d="M150,150 A15,15 0 0,1 165,165 A25,25 0 0,1 150,150" />
+                        <path class="flow-line micro-vortex-2" stroke="url(#flowGrad3)" d="M450,450 A15,15 0 0,0 435,435 A25,25 0 0,0 450,450" />
+                        <path class="flow-line micro-vortex-3" stroke="url(#flowGrad3)" d="M750,150 A15,15 0 0,1 765,165 A25,25 0 0,1 750,150" />
+                        <path class="flow-line micro-vortex-4" stroke="url(#flowGrad3)" d="M550,450 A15,15 0 0,0 535,435 A25,25 0 0,0 550,450" />
                     </g>
                 </svg>
             </div>
