@@ -227,7 +227,6 @@
             bottom: 0;
             left: 0;
             right: 0;
-            width: 640px;
             max-width: 100%;
             max-height: 80vh;
             backdrop-filter: blur(8px);
@@ -240,8 +239,8 @@
             z-index: 120;
             display: flex;
             flex-direction: column;
-            position: relative; /* Добавить для позиционирования фона */
-            overflow: hidden; /* Добавить чтобы фон не выходил за границы */
+            position: relative; 
+            overflow: hidden; 
         }
 
         .modal-overlay.active .modal {
@@ -506,30 +505,29 @@
     <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modal">
+            <div class="modal__background">
+                <svg viewBox="0 0 800 600" class="animated-bg">
+                    <defs>
+                        <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgba(71,71,68,0.1);stop-opacity:0" />
+                            <stop offset="50%" style="stop-color:rgba(71,71,68,0.3);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(71,71,68,0.1);stop-opacity:0" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <path class="flow-line" d="M0,100 Q200,80 400,120 Q600,100 800,110" />
+                    <path class="flow-line" d="M0,200 Q150,180 300,220 Q450,200 600,210 Q750,190 800,200" />
+                    <path class="flow-line" d="M0,300 Q100,320 200,280 Q300,300 400,290 Q500,310 600,300 Q700,290 800,300" />
+                    <path class="flow-line" d="M0,400 Q250,380 500,420 Q750,400 800,410" />
+                    <path class="flow-line" d="M0,500 Q180,480 360,520 Q540,500 720,510 Q760,505 800,500" />
+                </svg>
+            </div>
             <div class="modal__header">
                 <h2 class="modal__title" id="modalTitle"></h2>
                 <button class="modal__close" id="modalClose" aria-label="Закрыть">×</button>
             </div>
             <div class="modal__content" id="modalContent"></div>
         </div>
-    </div>
-
-    <div class="modal__background">
-        <svg viewBox="0 0 800 600" class="animated-bg">
-            <defs>
-                <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:rgba(71,71,68,0.1);stop-opacity:0" />
-                    <stop offset="50%" style="stop-color:rgba(71,71,68,0.3);stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:rgba(71,71,68,0.1);stop-opacity:0" />
-                </linearGradient>
-            </defs>
-            
-            <path class="flow-line" d="M0,100 Q200,80 400,120 Q600,100 800,110" />
-            <path class="flow-line" d="M0,200 Q150,180 300,220 Q450,200 600,210 Q750,190 800,200" />
-            <path class="flow-line" d="M0,300 Q100,320 200,280 Q300,300 400,290 Q500,310 600,300 Q700,290 800,300" />
-            <path class="flow-line" d="M0,400 Q250,380 500,420 Q750,400 800,410" />
-            <path class="flow-line" d="M0,500 Q180,480 360,520 Q540,500 720,510 Q760,505 800,500" />
-        </svg>
     </div>
 
     <script>
