@@ -493,21 +493,22 @@
         /* Desktop Styles */
         @media (min-width: 1024px) {
             .header__container,
-            .main,
-            .modal {
+            .main {
                 max-width: 640px;
                 margin: 0 auto;
             }
-
+        
             .modal {
                 bottom: auto;
                 top: 50%;
                 left: 50%;
                 right: auto;
+                width: 640px;
+                max-width: calc(100vw - 2rem);
                 transform: translate(-50%, -50%) translateY(100%);
                 border-radius: 0.5rem;
             }
-
+        
             .modal-overlay.active .modal {
                 transform: translate(-50%, -50%) translateY(0);
             }
