@@ -240,6 +240,8 @@
             z-index: 120;
             display: flex;
             flex-direction: column;
+            position: relative; /* Добавить для позиционирования фона */
+            overflow: hidden; /* Добавить чтобы фон не выходил за границы */
         }
 
         .modal-overlay.active .modal {
@@ -299,6 +301,106 @@
         .modal__content::-webkit-scrollbar-thumb {
             background: var(--color-border);
             border-radius: 3px;
+        }
+
+        .modal__background {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        
+        .animated-bg {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            left: -10%;
+            top: -10%;
+        }
+        
+        .snake-line {
+            fill: none;
+            stroke: url(#lineGrad);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-dasharray: 10 20;
+            animation: 
+                snakeMove 8s infinite ease-in-out,
+                dashMove 3s infinite linear,
+                morphShape 12s infinite ease-in-out;
+            transform-origin: center;
+        }
+        
+        .snake-line:nth-child(2) {
+            animation-delay: -2s, -1s, -3s;
+            stroke-width: 3;
+        }
+        
+        .snake-line:nth-child(3) {
+            animation-delay: -4s, -2s, -6s;
+            stroke-width: 1.5;
+        }
+        
+        .snake-line:nth-child(4) {
+            animation-delay: -6s, -0.5s, -9s;
+            stroke-width: 2.5;
+        }
+        
+        .snake-line:nth-child(5) {
+            animation-delay: -1s, -2.5s, -2s;
+            stroke-width: 1.8;
+        }
+        
+        @keyframes snakeMove {
+            0%, 100% { 
+                transform: translateX(0) translateY(0) rotate(0deg) scale(1); 
+            }
+            25% { 
+                transform: translateX(30px) translateY(-20px) rotate(5deg) scale(1.1); 
+            }
+            50% { 
+                transform: translateX(-20px) translateY(40px) rotate(-3deg) scale(0.9); 
+            }
+            75% { 
+                transform: translateX(50px) translateY(-30px) rotate(8deg) scale(1.05); 
+            }
+        }
+        
+        @keyframes dashMove {
+            0% { 
+                stroke-dasharray: 10 20;
+                stroke-dashoffset: 0; 
+            }
+            50% { 
+                stroke-dasharray: 30 5;
+                stroke-dashoffset: 50; 
+            }
+            100% { 
+                stroke-dasharray: 10 20;
+                stroke-dashoffset: 100; 
+            }
+        }
+        
+        @keyframes morphShape {
+            0%, 100% {
+                d: path("M0,300 Q200,100 400,300 T800,300");
+            }
+            16% {
+                d: path("M0,300 Q100,200 300,400 Q500,100 800,350");
+            }
+            33% {
+                d: path("M0,250 Q250,50 400,250 Q600,450 800,200");
+            }
+            50% {
+                d: path("M0,400 Q150,100 350,350 Q550,200 800,450");
+            }
+            66% {
+                d: path("M0,200 Q300,500 500,150 Q700,400 800,250");
+            }
+            83% {
+                d: path("M0,350 Q200,50 450,400 Q650,100 800,300");
+            }
         }
 
         .service {
@@ -453,6 +555,24 @@
             </div>
             <div class="modal__content" id="modalContent"></div>
         </div>
+    </div>
+
+    <div class="modal__background">
+        <svg viewBox="0 0 800 600" class="animated-bg">
+            <defs>
+                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:rgba(71,71,68,0.1);stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:rgba(71,71,68,0.3);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(71,71,68,0.1);stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            
+            <path class="snake-line" d="M0,300 Q200,100 400,300 T800,300" />
+            <path class="snake-line" d="M0,200 Q300,400 600,200" />
+            <path class="snake-line" d="M100,500 Q400,50 700,400" />
+            <path class="snake-line" d="M0,150 Q150,450 300,150 Q450,450 600,150" />
+            <path class="snake-line" d="M200,0 Q100,300 400,500 Q700,200 800,600" />
+        </svg>
     </div>
 
     <script>
