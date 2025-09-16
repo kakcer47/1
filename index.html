@@ -308,99 +308,127 @@
             inset: 0;
             overflow: hidden;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0.4;
         }
         
         .animated-bg {
             position: absolute;
-            width: 120%;
-            height: 120%;
-            left: -10%;
-            top: -10%;
+            width: 130%;
+            height: 130%;
+            left: -15%;
+            top: -15%;
         }
         
-        .snake-line {
+        .spiral-line {
             fill: none;
-            stroke: url(#lineGrad);
+            stroke: url(#spiralGrad);
             stroke-width: 2;
             stroke-linecap: round;
-            stroke-dasharray: 10 20;
+            filter: blur(0.5px);
             animation: 
-                snakeMove 8s infinite ease-in-out,
-                dashMove 3s infinite linear,
-                morphShape 12s infinite ease-in-out;
-            transform-origin: center;
+                organicFlow 13s infinite ease-in-out,
+                spiralGrow 8s infinite ease-in-out,
+                goldenRotate 21s infinite linear;
+            transform-origin: center center;
         }
         
-        .snake-line:nth-child(2) {
-            animation-delay: -2s, -1s, -3s;
-            stroke-width: 3;
+        .spiral-line:nth-child(2) {
+            animation-delay: -3.236s, -1.618s, -5.236s; /* Золотое сечение в задержках */
+            stroke-width: 1.618;
+            opacity: 0.8;
         }
         
-        .snake-line:nth-child(3) {
-            animation-delay: -4s, -2s, -6s;
-            stroke-width: 1.5;
+        .spiral-line:nth-child(3) {
+            animation-delay: -5.236s, -2.618s, -8.472s;
+            stroke-width: 2.618;
+            opacity: 0.6;
         }
         
-        .snake-line:nth-child(4) {
-            animation-delay: -6s, -0.5s, -9s;
-            stroke-width: 2.5;
+        .spiral-line:nth-child(4) {
+            animation-delay: -8.472s, -4.236s, -13.708s;
+            stroke-width: 1.382; /* 1/φ */
+            opacity: 0.9;
         }
         
-        .snake-line:nth-child(5) {
-            animation-delay: -1s, -2.5s, -2s;
-            stroke-width: 1.8;
+        .spiral-line:nth-child(5) {
+            animation-delay: -2.118s, -3.854s, -3.416s;
+            stroke-width: 3.236; /* 2φ */
+            opacity: 0.5;
         }
         
-        @keyframes snakeMove {
-            0%, 100% { 
-                transform: translateX(0) translateY(0) rotate(0deg) scale(1); 
-            }
-            25% { 
-                transform: translateX(30px) translateY(-20px) rotate(5deg) scale(1.1); 
-            }
-            50% { 
-                transform: translateX(-20px) translateY(40px) rotate(-3deg) scale(0.9); 
-            }
-            75% { 
-                transform: translateX(50px) translateY(-30px) rotate(8deg) scale(1.05); 
-            }
-        }
-        
-        @keyframes dashMove {
-            0% { 
-                stroke-dasharray: 10 20;
-                stroke-dashoffset: 0; 
-            }
-            50% { 
-                stroke-dasharray: 30 5;
-                stroke-dashoffset: 50; 
-            }
-            100% { 
-                stroke-dasharray: 10 20;
-                stroke-dashoffset: 100; 
-            }
-        }
-        
-        @keyframes morphShape {
+        /* Органичное течение с завитками */
+        @keyframes organicFlow {
             0%, 100% {
-                d: path("M0,300 Q200,100 400,300 T800,300");
+                d: path("M50,300 Q150,200 250,300 Q350,400 450,300 Q550,150 650,250 Q750,350 800,200");
             }
             16% {
-                d: path("M0,300 Q100,200 300,400 Q500,100 800,350");
+                d: path("M50,280 Q180,150 280,320 Q380,450 480,280 Q580,120 680,280 Q780,380 800,180");
             }
             33% {
-                d: path("M0,250 Q250,50 400,250 Q600,450 800,200");
+                d: path("M30,320 Q130,180 230,350 Q330,500 430,320 Q530,100 630,320 Q730,420 800,220");
             }
             50% {
-                d: path("M0,400 Q150,100 350,350 Q550,200 800,450");
+                d: path("M70,290 Q170,120 270,340 Q370,480 470,290 Q570,80 670,340 Q770,440 800,190");
             }
             66% {
-                d: path("M0,200 Q300,500 500,150 Q700,400 800,250");
+                d: path("M40,310 Q140,170 240,360 Q340,520 440,310 Q540,90 640,360 Q740,460 800,210");
             }
             83% {
-                d: path("M0,350 Q200,50 450,400 Q650,100 800,300");
+                d: path("M60,270 Q160,140 260,330 Q360,470 460,270 Q560,110 660,330 Q760,430 800,170");
             }
+        }
+        
+        /* Рост и сжатие спиралей */
+        @keyframes spiralGrow {
+            0%, 100% { 
+                stroke-width: 2;
+                stroke-dasharray: none;
+            }
+            25% { 
+                stroke-width: 0.618;
+                stroke-dasharray: 8 13;
+            }
+            50% { 
+                stroke-width: 3.236;
+                stroke-dasharray: 21 8;
+            }
+            75% { 
+                stroke-width: 1.382;
+                stroke-dasharray: 13 21;
+            }
+        }
+        
+        /* Вращение по золотому углу */
+        @keyframes goldenRotate {
+            0% { 
+                transform: rotate(0deg) scale(1);
+            }
+            25% { 
+                transform: rotate(137.5deg) scale(1.618); /* Золотой угол */
+            }
+            50% { 
+                transform: rotate(275deg) scale(0.618);
+            }
+            75% { 
+                transform: rotate(412.5deg) scale(1.382);
+            }
+            100% { 
+                transform: rotate(550deg) scale(1);
+            }
+        }
+        
+        /* Дополнительные эффекты мерцания */
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        .spiral-line:nth-child(odd) {
+            animation: 
+                organicFlow 13s infinite ease-in-out,
+                spiralGrow 8s infinite ease-in-out,
+                goldenRotate 21s infinite linear,
+                shimmer 5s infinite ease-in-out;
         }
 
         .service {
@@ -547,31 +575,23 @@
     </main>
 
     <!-- Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" id="modal">
-            <div class="modal__header">
-                <h2 class="modal__title" id="modalTitle"></h2>
-                <button class="modal__close" id="modalClose" aria-label="Закрыть">×</button>
-            </div>
-            <div class="modal__content" id="modalContent"></div>
-        </div>
-    </div>
-
     <div class="modal__background">
         <svg viewBox="0 0 800 600" class="animated-bg">
             <defs>
-                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:rgba(71,71,68,0.1);stop-opacity:1" />
-                    <stop offset="50%" style="stop-color:rgba(71,71,68,0.3);stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:rgba(71,71,68,0.1);stop-opacity:1" />
+                <linearGradient id="spiralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgba(71,71,68,0.05);stop-opacity:0" />
+                    <stop offset="30%" style="stop-color:rgba(71,71,68,0.15);stop-opacity:1" />
+                    <stop offset="70%" style="stop-color:rgba(71,71,68,0.25);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(71,71,68,0.05);stop-opacity:0" />
                 </linearGradient>
             </defs>
             
-            <path class="snake-line" d="M0,300 Q200,100 400,300 T800,300" />
-            <path class="snake-line" d="M0,200 Q300,400 600,200" />
-            <path class="snake-line" d="M100,500 Q400,50 700,400" />
-            <path class="snake-line" d="M0,150 Q150,450 300,150 Q450,450 600,150" />
-            <path class="snake-line" d="M200,0 Q100,300 400,500 Q700,200 800,600" />
+            <!-- Основные спиральные завитки -->
+            <path class="spiral-line" d="M50,300 Q150,200 250,300 Q350,400 450,300 Q550,150 650,250 Q750,350 800,200" />
+            <path class="spiral-line" d="M0,400 Q100,250 200,400 Q300,550 400,400 Q500,200 600,350" />
+            <path class="spiral-line" d="M100,100 Q200,50 300,150 Q400,250 500,100 Q600,50 700,150" />
+            <path class="spiral-line" d="M0,150 Q80,300 160,150 Q240,50 320,200 Q400,350 480,150" />
+            <path class="spiral-line" d="M200,500 Q350,350 500,500 Q650,650 800,450" />
         </svg>
     </div>
 
