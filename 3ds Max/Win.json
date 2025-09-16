@@ -9,7 +9,7 @@
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "3ds Max 2026.5", "web": "https://claude.ai", "but": "1"},
+                {"name": "3ds Max 2026.2", "web": "https://www.dropbox.com/t/BpPR4TA5fFEvZPiI", "but": "1"},
                 {"name": "3ds Max 2025.5", "web": "https://claude.ai", "but": "1"},
                 {"name": "3ds Max 2024.5", "web": "https://claude.ai", "but": "1"},
                 {"name": "3ds Max 2023.5", "web": "https://claude.ai", "but": "1"},
