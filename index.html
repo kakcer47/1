@@ -227,7 +227,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            max-width: 100%;
+            width: 100%;
             max-height: 80vh;
             border-radius: 0.5rem 0.5rem 0 0;
             box-shadow: var(--shadow-modal);
@@ -238,16 +238,14 @@
             flex-direction: column;
             position: relative;
             overflow: hidden;
-            background: none; /* Убираем фон с modal */
         }
 
-        /* Белая подложка (задний слой) */
-        .modal__backdrop {
+        .modal__lines {
             position: absolute;
             inset: 0;
-            background: #ffffff;
-            border-radius: 0.5rem 0.5rem 0 0;
-            z-index: 1;
+            overflow: hidden;
+            z-index: 2;
+            opacity: 0.4;
         }
         
         /* SVG линии (средний слой) */
@@ -318,6 +316,7 @@
             overflow-y: auto;
             padding: 1.5rem;
             color: var(--color-text-secondary);
+            max-height: calc(80vh - 80px);
         }
 
         .modal__content::-webkit-scrollbar {
@@ -572,10 +571,9 @@
     <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modal">
-
             <div class="modal__backdrop"></div>
-
-            <div class="modal__background">
+            
+            <div class="modal__lines">
                 <svg viewBox="0 0 1000 600" class="animated-bg">
                     <defs>
                         <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -587,7 +585,6 @@
                         </linearGradient>
                     </defs>
                     
-                    <!-- Более длинные и жирные каллиграфические линии -->
                     <path class="flow-line" d="M-100,150 Q50,80 150,140 Q250,200 350,120 Q450,40 550,160 Q650,280 750,100 Q850,60 950,180 Q1050,300 1150,120" />
                     <path class="flow-line" d="M-80,300 Q20,180 120,320 Q220,460 320,280 Q420,100 520,380 Q620,520 720,240 Q820,180 920,340 Q1020,500 1120,280" />
                     <path class="flow-line" d="M-120,80 Q80,20 180,120 Q280,220 380,60 Q480,10 580,180 Q680,350 780,80 Q880,40 980,120 Q1080,200 1180,80" />
@@ -598,7 +595,7 @@
                     <path class="flow-line" d="M-70,500 Q130,370 230,520 Q330,670 430,480 Q530,290 630,580 Q730,720 830,440 Q930,380 1030,520 Q1130,660 1230,480" />
                 </svg>
             </div>
-
+        
             <div class="modal__container">
                 <div class="modal__header">
                     <h2 class="modal__title" id="modalTitle"></h2>
