@@ -227,9 +227,12 @@
             bottom: 0;
             left: 0;
             right: 0;
+            width: 640px;
             max-width: 100%;
             max-height: 80vh;
-            background-color: var(--color-bg-secondary);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background: rgba(231, 229, 219, 0.6);
             border-radius: 0.5rem 0.5rem 0 0;
             box-shadow: var(--shadow-modal);
             transform: translateY(100%);
