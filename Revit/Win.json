@@ -9,15 +9,15 @@
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "3ds Max 2026.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2025.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2024.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2023.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2022.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2021.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2020.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2019.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2018.5", "web": "https://claude.ai", "but": "1"}
+                {"name": "Revit 2026.2", "web": "https://www.dropbox.com/t/dY4EnSVx44UCjAUS", "but": "1"},
+                {"name": "Revit 2026.2", "web": "https://claude.ai", "but": "1"},
+                {"name": "Revit 2026.2", "web": "https://claude.ai", "but": "1"},
+                {"name": "Revit 2026.2", "web": "https://claude.ai", "but": "1"},
+                {"name": "Revit 2026.2", "web": "https://claude.ai", "but": "1"},
+                {"name": "Revit 2026.2", "web": "https://claude.ai", "but": "1"},
+                {"name": "Revit 2026.2", "web": "https://claude.ai", "but": "1"},
+                {"name": "Revit 2026.2", "web": "https://claude.ai", "but": "1"},
+                {"name": "Revit 2026.2", "web": "https://claude.ai", "but": "1"}
             ]
         },
         {
