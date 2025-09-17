@@ -716,19 +716,22 @@
                 const data = await ApiService.fetchServices(category, platformName);
                 
                 if (data && data.services) {
-                    const html = data.services.map(service => `
+                    const html = data.services.map((service, serviceIndex) => `
                         <div class="service">
                             <div class="service__title">${service.name}</div>
-                            ${service.subServices.map((sub, index) => {
+                            ${service.subServices.map((sub, subIndex) => {
+                                // Создаем уникальный ID используя индекс службы и подслужбы
+                                const uniqueId = `dropdown-${serviceIndex}-${subIndex}`;
+                                
                                 // Если есть вложенные элементы
                                 if (sub.subItems && sub.subItems.length > 0) {
                                     return `
                                         <div>
-                                            <div class="service__item service__item--expandable" data-dropdown-id="dropdown-${index}">
+                                            <div class="service__item service__item--expandable" data-dropdown-id="${uniqueId}">
                                                 <div class="service__item-text">${sub.name}</div>
                                                 ${BUTTON_ICONS[sub.but] ? `<div class="service__item-icon"><svg style="width: 16px; height: 16px;"><use href="#dhig--icons--actions--${BUTTON_ICONS[sub.but]}"/></svg></div>` : ''}
                                             </div>
-                                            <div class="service__dropdown" id="dropdown-${index}">
+                                            <div class="service__dropdown" id="${uniqueId}">
                                                 ${sub.subItems.map(item => `
                                                     <div class="service__dropdown-item" ${item.web && item.web !== "0" ? `onclick="window.open('${item.web}', '_blank')"` : ''}>
                                                         <span>${item.name}</span>
@@ -751,9 +754,9 @@
                             }).join('')}
                         </div>
                     `).join('');
-
+            
                     ModalController.setContent(html);
-
+            
                     // Добавить обработчики для выпадающих списков
                     setTimeout(() => {
                         document.querySelectorAll('.service__item--expandable').forEach(item => {
@@ -767,7 +770,8 @@
                         });
                     }, 100);
                     
-                    ModalController.setContent(html);
+                    // Убираем дублированный вызов setContent
+                    // ModalController.setContent(html);
                 } else {
                     ModalController.showError();
                 }
