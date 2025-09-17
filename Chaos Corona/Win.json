@@ -12,11 +12,11 @@
                 {
                     "name": "Видео инструкция",
                     "web": "0",
+                    "but": "2",
                     "subItems": [
-                        {"name": "3ds Max", "web": "https://claude.ai", "but": "1"},
-                        {"name": "Cinema 4D", "web": "https://claude.ai", "but": "1"}
-                    ],
-                    "but": "2"
+                        {"name": "3ds Max", "web": "https://claude.ai", "but": "0"},
+                        {"name": "Cinema 4D", "web": "https://claude.ai", "but": "0"}
+                    ] 
                 }
             ]
         },
