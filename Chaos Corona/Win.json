@@ -23,9 +23,23 @@
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "3ds Max 2026.2", "web": "https://www.dropbox.com/t/8wtRPjJhQQN0IuT7", "but": "1"},
-                {"name": "3ds Max 2025.3.2", "web": "https://www.dropbox.com/t/gR5Um426X3JjuL9p", "but": "1"},
-                {"name": "3ds Max 2024.2.9", "web": "https://www.dropbox.com/t/mEPqvm9XumnDGuk1", "but": "1"},
+                {
+                    "name": "Chaos Corona for 3ds Max", 
+                    "web": "0", 
+                    "but": "1", 
+                    "subItems": [
+                        {"name": "Chaos Corona 13.1 for 3ds Max 2016-2026", "web": "https://www.dropbox.com/t/F7a0DNx6YvHg6ElX", "but": "0"},
+                        {"name": "Chaos Corona 8.2 for 3ds Max 2016-2023", "web": "https://www.dropbox.com/t/gR5Um426X3JjuL9p", "but": "0"}
+                    ] 
+                },
+                {
+                    "name": "Chaos Corona for Cinema 4D", 
+                    "web": "0", 
+                    "but": "1"
+                    "subItems": [
+                        {"name": "Chaos Corona 13.1 for Cinema 4D R17-2025", "web": "https://www.dropbox.com/t/F7a0DNx6YvHg6ElX", "but": "0"}
+                    ] 
+                },
                 {"name": "3ds Max 2023.3.9", "web": "https://www.dropbox.com/t/9t5fOizh5JyYHYKn", "but": "1"},
                 {"name": "3ds Max 2022.3.13", "web": "https://www.dropbox.com/t/auykIu5FFqhMuqb8", "but": "1"},
                 {"name": "3ds Max 2021.3.17", "web": "https://www.dropbox.com/t/PFAz7nIdBpkfHGLa", "but": "1"},
