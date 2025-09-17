@@ -1,38 +1,41 @@
 {
     "services": [
         {
-            "name": "Видео инструкция",
+            "name": "Помощь в установке",
             "subServices": [
-                {"name": "Смотреть", "web": "https://claude.ai", "but": "0"}
+                {"name": "Написать", "web": "https://t.me/Stylish_Antelope_Download", "but": "4"}
+            ]
+        },
+        {
+            "name": "Установка",
+            "subServices": [
+                {"name": "Видео инструкция", "web": "0", "but": "2",
+                 "subItems": [
+                   {"name": "3ds Max", "web": "https://claude.ai", "but": "1"},
+                   {"name": "Cinema 4D", "web": "https://claude.ai", "but": "1"}
+                }
             ]
         },
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "3ds Max 2026.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2025.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2024.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2023.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2022.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2021.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2020.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2019.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2018.5", "web": "https://claude.ai", "but": "1"}
+                {"name": "3ds Max 2026.2", "web": "https://www.dropbox.com/t/8wtRPjJhQQN0IuT7", "but": "1"},
+                {"name": "3ds Max 2025.3.2", "web": "https://www.dropbox.com/t/gR5Um426X3JjuL9p", "but": "1"},
+                {"name": "3ds Max 2024.2.9", "web": "https://www.dropbox.com/t/mEPqvm9XumnDGuk1", "but": "1"},
+                {"name": "3ds Max 2023.3.9", "web": "https://www.dropbox.com/t/9t5fOizh5JyYHYKn", "but": "1"},
+                {"name": "3ds Max 2022.3.13", "web": "https://www.dropbox.com/t/auykIu5FFqhMuqb8", "but": "1"},
+                {"name": "3ds Max 2021.3.17", "web": "https://www.dropbox.com/t/PFAz7nIdBpkfHGLa", "but": "1"},
+                {"name": "3ds Max 2020.3.8", "web": "https://www.dropbox.com/t/OnZnWgiTUHxjv8qS", "but": "1"},
+                {"name": "3ds Max 2019.1", "web": "https://www.dropbox.com/t/7rdLCexDWKB7OlE8", "but": "1"}
             ]
         },
         {
             "name": "Дополнительно",
             "subServices": [
-                {"name": "Активатор Autodesk", "web": "https://claude.ai", "but": "1"},
-                {"name": "Corona Render", "web": "https://claude.ai", "but": "1"},
-                {"name": "V-Ray", "web": "https://claude.ai", "but": "1"},
-                {"name": "Плагины", "web": "https://claude.ai", "but": "1"}
-            ]
-        },
-        {
-            "name": "Помощь в установке",
-            "subServices": [
-                {"name": "Написать", "web": "https://claude.ai", "but": "0"}
+                {"name": "Активатор Autodesk", "web": "https://www.dropbox.com/t/txl5qZldGrOFWgCJ", "but": "3"},
+                {"name": "Corona Render", "web": "https://claude.ai", "but": "3"},
+                {"name": "V-Ray", "web": "https://claude.ai", "but": "3"},
+                {"name": "Плагины", "web": "https://claude.ai", "but": "3"}
             ]
         }
     ]
