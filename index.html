@@ -240,18 +240,16 @@
             overflow: hidden;
         }
 
-        .modal__text-animation {
+        .modal__background-image {
             position: absolute;
             inset: 0;
-            z-index: 1; /* Помещаем текст позади контента */
+            z-index: 1; /* Помещаем картинку позади контента */
             background-color: var(--color-bg-secondary); /* #e7e5db */
-            overflow: hidden;
-            opacity: 0.3; /* Прозрачность, чтобы текст не отвлекал */
-        }
-        
-        .text-spiral {
-            width: 100%;
-            height: 100%;
+            background-image: url('./1.jpg');
+            background-size: cover; /* Картинка заполняет весь блок */
+            background-position: center; /* Центрируем изображение */
+            background-repeat: no-repeat;
+            opacity: 0.3; /* Прозрачность, чтобы картинка не отвлекала */
         }
         
         .modal__container {
@@ -498,22 +496,7 @@
         <div class="modal" id="modal">
             <div class="modal__backdrop"></div>
             
-            <div class="modal__text-animation">
-                <svg viewBox="0 0 1200 800" class="text-spiral">
-                    <path 
-                        id="spiralPath" 
-                        d="M600,400 A50,50 0 0,1 650,450 A100,100 0 0,1 750,400 A150,150 0 0,1 900,450 A200,200 0 0,1 1100,400 A250,250 0 0,1 1200,450" 
-                        fill="none" 
-                        stroke="transparent" 
-                    />
-                    <text font-family="'Festive', cursive" font-size="40" fill="#3d3d3a">
-                        <textPath href="#spiralPath" startOffset="0%">
-                            <animate attributeName="startOffset" from="0%" to="100%" dur="15s" repeatCount="indefinite" />
-                            nUJAsunsdmasdua ajsidj MD zmsdndfsuzi asjdbIADMADF hSdn asfdmsnJBS JDSNKFm lDMFKSNJDS SBAJFSNDKSANDJSdf bhsbjnks maknfj
-                        </textPath>
-                    </text>
-                </svg>
-            </div>
+            <div class="modal__background-image"></div>
         
             <div class="modal__container">
                 <div class="modal__header">
