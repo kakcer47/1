@@ -3,13 +3,13 @@
         {
             "name": "Помощь в установке",
             "subServices": [
-                {"name": "Написать", "web": "https://t.me/Stylish_Antelope_Download", "but": "0"}
+                {"name": "Написать", "web": "https://t.me/Stylish_Antelope_Download", "but": "4"}
             ]
         },
         {
             "name": "Установка",
             "subServices": [
-                {"name": "Видео инструкция", "web": "https://claude.ai", "but": "0"}
+                {"name": "Видео инструкция", "web": "https://claude.ai", "but": "2"}
             ]
         },
         {
@@ -28,10 +28,10 @@
         {
             "name": "Дополнительно",
             "subServices": [
-                {"name": "Активатор Autodesk", "web": "https://www.dropbox.com/t/txl5qZldGrOFWgCJ", "but": "1"},
-                {"name": "Corona Render", "web": "https://claude.ai", "but": "1"},
-                {"name": "V-Ray", "web": "https://claude.ai", "but": "1"},
-                {"name": "Плагины", "web": "https://claude.ai", "but": "1"}
+                {"name": "Активатор Autodesk", "web": "https://www.dropbox.com/t/txl5qZldGrOFWgCJ", "but": "3"},
+                {"name": "Corona Render", "web": "https://claude.ai", "but": "3"},
+                {"name": "V-Ray", "web": "https://claude.ai", "but": "3"},
+                {"name": "Плагины", "web": "https://claude.ai", "but": "3"}
             ]
         }
     ]
