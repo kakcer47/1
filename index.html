@@ -216,12 +216,12 @@
             transition: opacity 0.5s ease, visibility 0.5s ease;
             z-index: 110;
         }
-
+        
         .modal-overlay.active {
             opacity: 1;
             visibility: visible;
         }
-
+        
         .modal {
             position: fixed;
             bottom: 0;
@@ -239,7 +239,7 @@
             position: relative;
             overflow: hidden;
         }
-
+        
         /* Основной контент (передний слой с прозрачностью) */
         .modal__container {
             position: relative;
@@ -252,11 +252,11 @@
             background: rgba(231, 229, 219, 1);
             border-radius: 0.5rem 0.5rem 0 0;
         }
-
+        
         .modal-overlay.active .modal {
             transform: translateY(0);
         }
-
+        
         .modal__header {
             display: flex;
             justify-content: space-between;
@@ -266,13 +266,13 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-
+        
         .modal__title {
             font-size: 1.125rem;
             font-weight: 600;
             color: var(--color-text-secondary);
         }
-
+        
         .modal__close {
             width: 2.25rem;
             height: 2.25rem;
@@ -288,12 +288,12 @@
             cursor: pointer;
             transition: var(--transition-default);
         }
-
+        
         .modal__close:hover {
             background-color: var(--color-bg-hover);
             border-color: var(--color-border);
         }
-
+        
         .modal__content {
             flex: 1;
             overflow-y: auto;
@@ -301,15 +301,15 @@
             color: var(--color-text-secondary);
             max-height: calc(80vh - 80px);
         }
-
+        
         .modal__content::-webkit-scrollbar {
             width: 6px;
         }
-
+        
         .modal__content::-webkit-scrollbar-track {
             background: var(--color-bg-secondary);
         }
-
+        
         .modal__content::-webkit-scrollbar-thumb {
             background: var(--color-border);
             border-radius: 3px;
@@ -403,12 +403,12 @@
                 width: 640px;
                 max-width: calc(100vw - 2rem);
                 transform: translate(-50%, -50%) translateY(100%);
-                border-radius: 0.5rem;
+                border-radius: 0.5rem; /* Добавляем скругление со всех сторон для десктопа */
                 overflow: hidden;
             }
-
+        
             .modal__container {
-                border-radius: 0.5rem;
+                border-radius: 0.5rem; /* Скругление контейнера для десктопа */
             }
         
             .modal-overlay.active .modal {
