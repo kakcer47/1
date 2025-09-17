@@ -204,6 +204,52 @@
             transform: scale(1.1);
         }
 
+        /* Dropdown styles */
+        .service__item--expandable {
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .service__item--expandable::before {
+            content: '▶';
+            display: inline-block;
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+            transform: rotate(0deg);
+        }
+        
+        .service__item--expandable.expanded::before {
+            transform: rotate(90deg);
+        }
+        
+        .service__dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-left: 1.5rem;
+        }
+        
+        .service__dropdown.expanded {
+            max-height: 500px; /* Достаточно большое значение */
+        }
+        
+        .service__dropdown-item {
+            padding: 0.5rem 0.75rem;
+            margin-top: 0.25rem;
+            background-color: var(--color-bg-primary);
+            border-radius: 0.375rem;
+            transition: var(--transition-default);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .service__dropdown-item:hover {
+            background-color: var(--color-bg-hover);
+            transform: translateX(4px);
+        }
+
         /* Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -684,14 +730,53 @@
                     const html = data.services.map(service => `
                         <div class="service">
                             <div class="service__title">${service.name}</div>
-                            ${service.subServices.map(sub => `
-                                <div class="service__item" ${sub.web ? `onclick="window.open('${sub.web}', '_blank')"` : ''} ${sub.web ? 'style="cursor: pointer;"' : ''}>
-                                    <div class="service__item-text">${sub.name}</div>
-                                    ${BUTTON_ICONS[sub.but] ? `<div class="service__item-icon"><svg style="width: 16px; height: 16px;"><use href="#dhig--icons--actions--${BUTTON_ICONS[sub.but]}"/></svg></div>` : ''}
-                                </div>
-                            `).join('')}
+                            ${service.subServices.map((sub, index) => {
+                                // Если есть вложенные элементы
+                                if (sub.subItems && sub.subItems.length > 0) {
+                                    return `
+                                        <div>
+                                            <div class="service__item service__item--expandable" data-dropdown-id="dropdown-${index}">
+                                                <div class="service__item-text">${sub.name}</div>
+                                                ${BUTTON_ICONS[sub.but] ? `<div class="service__item-icon"><svg style="width: 16px; height: 16px;"><use href="#dhig--icons--actions--${BUTTON_ICONS[sub.but]}"/></svg></div>` : ''}
+                                            </div>
+                                            <div class="service__dropdown" id="dropdown-${index}">
+                                                ${sub.subItems.map(item => `
+                                                    <div class="service__dropdown-item" ${item.web && item.web !== "0" ? `onclick="window.open('${item.web}', '_blank')"` : ''}>
+                                                        <span>${item.name}</span>
+                                                        ${BUTTON_ICONS[item.but] ? `<svg style="width: 16px; height: 16px;"><use href="#dhig--icons--actions--${BUTTON_ICONS[item.but]}"/></svg>` : ''}
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    `;
+                                } 
+                                // Обычный элемент без вложенности
+                                else {
+                                    return `
+                                        <div class="service__item" ${sub.web && sub.web !== "0" ? `onclick="window.open('${sub.web}', '_blank')"` : ''} ${sub.web && sub.web !== "0" ? 'style="cursor: pointer;"' : ''}>
+                                            <div class="service__item-text">${sub.name}</div>
+                                            ${BUTTON_ICONS[sub.but] ? `<div class="service__item-icon"><svg style="width: 16px; height: 16px;"><use href="#dhig--icons--actions--${BUTTON_ICONS[sub.but]}"/></svg></div>` : ''}
+                                        </div>
+                                    `;
+                                }
+                            }).join('')}
                         </div>
                     `).join('');
+
+                    ModalController.setContent(html);
+
+                    // Добавить обработчики для выпадающих списков
+                    setTimeout(() => {
+                        document.querySelectorAll('.service__item--expandable').forEach(item => {
+                            item.addEventListener('click', function() {
+                                const dropdownId = this.dataset.dropdownId;
+                                const dropdown = document.getElementById(dropdownId);
+                                
+                                this.classList.toggle('expanded');
+                                dropdown.classList.toggle('expanded');
+                            });
+                        });
+                    }, 100);
                     
                     ModalController.setContent(html);
                 } else {
