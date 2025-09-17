@@ -14,8 +14,8 @@
                     "web": "0",
                     "but": "2",
                     "subItems": [
-                        {"name": "3ds Max", "web": "https://claude.ai", "but": "0"},
-                        {"name": "Cinema 4D", "web": "https://claude.ai", "but": "0"}
+                        {"name": "Chaos Corona for 3ds Max", "web": "https://claude.ai", "but": "0"},
+                        {"name": "Chaos Corona for Cinema 4D", "web": "https://claude.ai", "but": "0"}
                     ] 
                 }
             ]
