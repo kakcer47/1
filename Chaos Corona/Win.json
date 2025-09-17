@@ -35,7 +35,7 @@
                 {
                     "name": "Chaos Corona for Cinema 4D", 
                     "web": "0", 
-                    "but": "1"
+                    "but": "1",
                     "subItems": [
                         {"name": "Chaos Corona 13.1 for Cinema 4D R17-2025", "web": "https://www.dropbox.com/t/F7a0DNx6YvHg6ElX", "but": "0"}
                     ] 
