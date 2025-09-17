@@ -403,7 +403,8 @@
                 width: 640px;
                 max-width: calc(100vw - 2rem);
                 transform: translate(-50%, -50%) translateY(100%);
-                border-radius: 0.5rem;
+                border-radius: 0.5rem; /* Убедись, что радиус применяется ко всем углам */
+                overflow: hidden; /* Гарантирует, что содержимое не ломает скругление */
             }
         
             .modal-overlay.active .modal {
