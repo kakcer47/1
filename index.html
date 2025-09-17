@@ -240,18 +240,6 @@
             overflow: hidden;
         }
 
-        .modal__background-image {
-            position: absolute;
-            inset: 0;
-            z-index: 1; /* Помещаем картинку позади контента */
-            background-color: var(--color-bg-secondary); /* #e7e5db */
-            background-image: url('./2.png');
-            background-size: cover; /* Картинка заполняет весь блок */
-            background-position: center; /* Центрируем изображение */
-            background-repeat: no-repeat;
-            opacity: 1; /* Прозрачность, чтобы картинка не отвлекала */
-        }
-
         /* Основной контент (передний слой с прозрачностью) */
         .modal__container {
             position: relative;
@@ -261,7 +249,7 @@
             flex-direction: column;
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
-            background: rgba(231, 229, 219, 0.6);
+            background: rgba(231, 229, 219, 1);
             border-radius: 0.5rem 0.5rem 0 0;
         }
 
@@ -325,14 +313,6 @@
         .modal__content::-webkit-scrollbar-thumb {
             background: var(--color-border);
             border-radius: 3px;
-        }
-
-        .modal__background {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            z-index: -1;
-            opacity: 0.3;
         }
 
         .service {
@@ -482,10 +462,6 @@
     <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modal">
-            <div class="modal__backdrop"></div>
-            
-            <div class="modal__background-image"></div>
-        
             <div class="modal__container">
                 <div class="modal__header">
                     <h2 class="modal__title" id="modalTitle"></h2>
