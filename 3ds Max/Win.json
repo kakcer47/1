@@ -9,20 +9,19 @@
         {
             "name": "Установка",
             "subServices": [
-                {"name": "Видео инструкция", "web": "https://claude.ai", "but": "2"}
+                {"name": "Видео инструкция", "web": "https://t.me/StylishAntelopeFiles/33", "but": "2"}
             ]
         },
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "3ds Max 2026.2", "web": "https://www.dropbox.com/t/8wtRPjJhQQN0IuT7", "but": "1"},
-                {"name": "3ds Max 2025.3.2", "web": "https://www.dropbox.com/t/gR5Um426X3JjuL9p", "but": "1"},
-                {"name": "3ds Max 2024.2.9", "web": "https://www.dropbox.com/t/mEPqvm9XumnDGuk1", "but": "1"},
-                {"name": "3ds Max 2023.3.9", "web": "https://www.dropbox.com/t/9t5fOizh5JyYHYKn", "but": "1"},
-                {"name": "3ds Max 2022.3.13", "web": "https://www.dropbox.com/t/auykIu5FFqhMuqb8", "but": "1"},
-                {"name": "3ds Max 2021.3.17", "web": "https://www.dropbox.com/t/PFAz7nIdBpkfHGLa", "but": "1"},
-                {"name": "3ds Max 2020.3.8", "web": "https://www.dropbox.com/t/OnZnWgiTUHxjv8qS", "but": "1"},
-                {"name": "3ds Max 2019.1", "web": "https://www.dropbox.com/t/7rdLCexDWKB7OlE8", "but": "1"}
+                {"name": "3ds Max 2026.2", "web": "https://t.me/StylishAntelopeFiles/46", "but": "1"},
+                {"name": "3ds Max 2025.3.2", "web": "https://t.me/StylishAntelopeFiles/44", "but": "1"},
+                {"name": "3ds Max 2024.2.9", "web": "https://t.me/StylishAntelopeFiles/42", "but": "1"},
+                {"name": "3ds Max 2023.3.9", "web": "https://t.me/StylishAntelopeFiles/40", "but": "1"},
+                {"name": "3ds Max 2022.3.13", "web": "https://t.me/StylishAntelopeFiles/38", "but": "1"},
+                {"name": "3ds Max 2021.3.17", "web": "https://t.me/StylishAntelopeFiles/36", "but": "1"},
+                {"name": "3ds Max 2020.3.8", "web": "https://t.me/StylishAntelopeFiles/34", "but": "1"}
             ]
         },
         {
