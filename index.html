@@ -886,16 +886,22 @@
         };
 
         function openTelegramLink(url) {
-            // Создаем временный meta элемент для редиректа
-            const meta = document.createElement('meta');
-            meta.httpEquiv = 'refresh';
-            meta.content = `0; url=${url}`;
-            document.head.appendChild(meta);
+            // Создаем невидимую ссылку
+            const link = document.createElement('a');
+            link.href = url;
+            link.target = '_self'; // Открываем в том же окне
+            link.style.display = 'none';
             
-            // Удаляем через секунду
+            // Добавляем в DOM
+            document.body.appendChild(link);
+            
+            // Имитируем клик
+            link.click();
+            
+            // Удаляем через короткое время
             setTimeout(() => {
-                document.head.removeChild(meta);
-            }, 1000);
+                document.body.removeChild(link);
+            }, 100);
         }
 
         // Start the app when DOM is ready
