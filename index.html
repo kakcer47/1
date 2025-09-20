@@ -886,24 +886,16 @@
         };
 
         function openTelegramLink(url) {
-            // Создаем кастомное событие для Telegram
-            const event = new CustomEvent('telegram_open_link', {
-                detail: { url: url }
-            });
+            // Создаем временный meta элемент для редиректа
+            const meta = document.createElement('meta');
+            meta.httpEquiv = 'refresh';
+            meta.content = `0; url=${url}`;
+            document.head.appendChild(meta);
             
-            // Отправляем событие
-            window.dispatchEvent(event);
-            document.dispatchEvent(event);
-            
-            // Небольшая задержка и fallback
+            // Удаляем через секунду
             setTimeout(() => {
-                if (url.includes('t.me/')) {
-                    // Для t.me ссылок пробуем прямое присвоение
-                    window.location.assign(url);
-                } else {
-                    window.location.href = url;
-                }
-            }, 100);
+                document.head.removeChild(meta);
+            }, 1000);
         }
 
         // Start the app when DOM is ready
