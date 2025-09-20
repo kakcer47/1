@@ -885,31 +885,21 @@
             }
         };
 
-        // Telegram Link Handler
         function openTelegramLink(url) {
-            // Проверяем доступность Telegram Web App API
-            if (window.Telegram && window.Telegram.WebApp) {
-                try {
-                    // Для t.me ссылок используем специальный метод
-                    if (url.includes('t.me/')) {
-                        window.Telegram.WebApp.openTelegramLink(url);
-                        return;
-                    }
-                    // Для других ссылок используем обычный метод
-                    window.Telegram.WebApp.openLink(url);
-                    return;
-                } catch (error) {
-                    console.error('Telegram Web App API error:', error);
-                }
+            // Отправляем сообщение родительскому окну (Telegram)
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({
+                    type: 'web_app_open_link',
+                    url: url
+                }, '*');
+                return;
             }
             
-            // Fallback для обычных браузеров или если API недоступен
+            // Если postMessage не сработал, пробуем через location без _blank
             try {
-                window.open(url, '_blank');
+                window.location.href = url;
             } catch (error) {
                 console.error('Failed to open link:', error);
-                // Последний fallback - просто меняем location
-                window.location.href = url;
             }
         }
 
