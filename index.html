@@ -886,8 +886,9 @@
         };
         
         function openTelegramLink(url) {
-            // Просто меняем location без window.open
-            window.location.href = url;
+            setTimeout(() => {
+                window.location.replace(url);
+            }, 0);
         }
 
         // Start the app when DOM is ready
