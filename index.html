@@ -733,7 +733,7 @@
                                             </div>
                                             <div class="service__dropdown" id="${uniqueId}">
                                                 ${sub.subItems.map(item => `
-                                                    <div class="service__dropdown-item" ${item.web && item.web !== "0" ? `onclick="window.open('${item.web}', '_blank')"` : ''}>
+                                                    <div class="service__dropdown-item" ${item.web && item.web !== "0" ? `onclick="openTelegramLink('${item.web}')"` : ''}>
                                                         <span>${item.name}</span>
                                                         ${BUTTON_ICONS[item.but] ? `<svg style="width: 16px; height: 16px;"><use href="#dhig--icons--actions--${BUTTON_ICONS[item.but]}"/></svg>` : ''}
                                                     </div>
@@ -745,7 +745,7 @@
                                 // Обычный элемент без вложенности
                                 else {
                                     return `
-                                        <div class="service__item" ${sub.web && sub.web !== "0" ? `onclick="window.open('${sub.web}', '_blank')"` : ''} ${sub.web && sub.web !== "0" ? 'style="cursor: pointer;"' : ''}>
+                                        <div class="service__item" ${sub.web && sub.web !== "0" ? `onclick="openTelegramLink('${sub.web}')"` : ''} ${sub.web && sub.web !== "0" ? 'style="cursor: pointer;"' : ''}>
                                             <div class="service__item-text">${sub.name}</div>
                                             ${BUTTON_ICONS[sub.but] ? `<div class="service__item-icon"><svg style="width: 16px; height: 16px;"><use href="#dhig--icons--actions--${BUTTON_ICONS[sub.but]}"/></svg></div>` : ''}
                                         </div>
@@ -884,6 +884,34 @@
                 });
             }
         };
+
+        // Telegram Link Handler
+        function openTelegramLink(url) {
+            // Проверяем доступность Telegram Web App API
+            if (window.Telegram && window.Telegram.WebApp) {
+                try {
+                    // Для t.me ссылок используем специальный метод
+                    if (url.includes('t.me/')) {
+                        window.Telegram.WebApp.openTelegramLink(url);
+                        return;
+                    }
+                    // Для других ссылок используем обычный метод
+                    window.Telegram.WebApp.openLink(url);
+                    return;
+                } catch (error) {
+                    console.error('Telegram Web App API error:', error);
+                }
+            }
+            
+            // Fallback для обычных браузеров или если API недоступен
+            try {
+                window.open(url, '_blank');
+            } catch (error) {
+                console.error('Failed to open link:', error);
+                // Последний fallback - просто меняем location
+                window.location.href = url;
+            }
+        }
 
         // Start the app when DOM is ready
         if (document.readyState === 'loading') {
