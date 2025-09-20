@@ -884,24 +884,10 @@
                 });
             }
         };
-
+        
         function openTelegramLink(url) {
-            // Создаем невидимую ссылку
-            const link = document.createElement('a');
-            link.href = url;
-            link.target = '_self'; // Открываем в том же окне
-            link.style.display = 'none';
-            
-            // Добавляем в DOM
-            document.body.appendChild(link);
-            
-            // Имитируем клик
-            link.click();
-            
-            // Удаляем через короткое время
-            setTimeout(() => {
-                document.body.removeChild(link);
-            }, 100);
+            // Просто меняем location без window.open
+            window.location.href = url;
         }
 
         // Start the app when DOM is ready
