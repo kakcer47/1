@@ -886,19 +886,71 @@
         };
 
         function openTelegramLink(url) {
-            // Для файлов из Telegram каналов показываем информацию
-            if (url.includes('StylishAntelopeFiles')) {
-                showFilePreview(url);
+            // Для файлов из каналов показываем красивое уведомление
+            if (url.includes('StylishAntelopeFiles') || url.includes('dropbox.com')) {
+                showFileInfo(url);
                 return;
             }
             
-            // Для остальных ссылок - обычный переход
+            // Для остальных ссылок - прямой переход
             window.location.href = url;
         }
         
-        function showFilePreview(url) {
-            // Показываем модальное окно с информацией о файле
-            // и кнопкой для перехода в канал
+        function showFileInfo(url) {
+            // Создаем модальное окно
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                backdrop-filter: blur(4px);
+            `;
+            
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                background: var(--color-bg-primary);
+                padding: 2rem;
+                border-radius: 1rem;
+                max-width: 350px;
+                width: 90%;
+                text-align: center;
+                box-shadow: var(--shadow-modal);
+            `;
+            
+            modal.innerHTML = `
+                <h3 style="margin: 0 0 1rem 0; color: var(--color-text-secondary);">Файл для скачивания</h3>
+                <p style="margin: 0 0 1.5rem 0; color: var(--color-text-primary);">Файл будет открыт в Telegram канале</p>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button id="downloadBtn" style="flex: 1; padding: 0.75rem; background: #007bff; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 500;">Скачать</button>
+                    <button id="cancelBtn" style="flex: 1; padding: 0.75rem; background: var(--color-bg-secondary); color: var(--color-text-secondary); border: none; border-radius: 0.5rem; cursor: pointer;">Отмена</button>
+                </div>
+            `;
+            
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+            
+            // Обработчики событий
+            modal.querySelector('#downloadBtn').onclick = () => {
+                window.location.href = url;
+                overlay.remove();
+            };
+            
+            modal.querySelector('#cancelBtn').onclick = () => {
+                overlay.remove();
+            };
+            
+            overlay.onclick = (e) => {
+                if (e.target === overlay) {
+                    overlay.remove();
+                }
+            };
         }
 
         // Start the app when DOM is ready
