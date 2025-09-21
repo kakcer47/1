@@ -884,13 +884,22 @@
                 });
             }
         };
-        
-        function openTelegramLink(url) {
-            setTimeout(() => {
-                window.location.replace(url);
-            }, 0);
-        }
 
+        function openTelegramLink(url) {
+            // Проверяем, это ссылка на файл для скачивания или обычная ссылка
+            if (url.includes('dropbox.com') || url.includes('StylishAntelopeFiles')) {
+                // Пробуем использовать нативный API скачивания
+                if (window.Telegram?.WebApp?.downloadFile) {
+                    // Извлекаем имя файла из URL или задаем по умолчанию
+                    const fileName = url.split('/').pop() || 'download';
+                    window.Telegram.WebApp.downloadFile(url, fileName);
+                    return;
+                }
+            }
+            
+            // Fallback для обычных ссылок
+            window.location.href = url;
+        }
         // Start the app when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => App.init());
