@@ -886,19 +886,69 @@
         };
 
         function openTelegramLink(url) {
-            // Проверяем, это ссылка на файл для скачивания или обычная ссылка
-            if (url.includes('dropbox.com') || url.includes('StylishAntelopeFiles')) {
-                // Пробуем использовать нативный API скачивания
-                if (window.Telegram?.WebApp?.downloadFile) {
-                    // Извлекаем имя файла из URL или задаем по умолчанию
-                    const fileName = url.split('/').pop() || 'download';
-                    window.Telegram.WebApp.downloadFile(url, fileName);
-                    return;
+            // Проверяем наличие Telegram WebApp
+            if (window.Telegram?.WebApp) {
+                try {
+                    // Используем showAlert для уведомления вместо перехода
+                    if (url.includes('t.me/StylishAntelopeFiles') || url.includes('dropbox.com')) {
+                        window.Telegram.WebApp.showAlert('Файл доступен в канале @StylishAntelopeFiles. Перейти в канал для скачивания?', () => {
+                            window.Telegram.WebApp.openTelegramLink(url);
+                        });
+                        return;
+                    }
+                    
+                    // Для других t.me ссылок показываем подтверждение
+                    if (url.includes('t.me/')) {
+                        window.Telegram.WebApp.showConfirm('Перейти в Telegram канал?', (confirmed) => {
+                            if (confirmed) {
+                                window.Telegram.WebApp.openTelegramLink(url);
+                            }
+                        });
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Telegram WebApp API error:', error);
                 }
             }
             
-            // Fallback для обычных ссылок
-            window.location.href = url;
+            // Fallback - создаем всплывающее окно с инструкциями
+            showDownloadInstructions(url);
+        }
+        
+        function showDownloadInstructions(url) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                color: white;
+                font-family: inherit;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: #2a2a2a; padding: 2rem; border-radius: 1rem; max-width: 400px; text-align: center;">
+                    <h3 style="margin: 0 0 1rem 0;">Скачивание файла</h3>
+                    <p style="margin: 0 0 1.5rem 0;">Скопируйте ссылку и откройте в Telegram:</p>
+                    <input type="text" value="${url}" style="width: 100%; padding: 0.5rem; margin: 0 0 1rem 0; border: none; border-radius: 0.5rem; background: #444; color: white;" readonly onclick="this.select()">
+                    <button onclick="this.parentElement.parentElement.remove()" style="padding: 0.5rem 1rem; background: #007bff; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">Закрыть</button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Автоматическое удаление через 10 секунд
+            setTimeout(() => {
+                if (modal.parentElement) {
+                    modal.remove();
+                }
+            }, 10000);
         }
         // Start the app when DOM is ready
         if (document.readyState === 'loading') {
