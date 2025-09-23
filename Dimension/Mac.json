@@ -1,0 +1,10 @@
+{
+    "services": [
+        {
+            "name": "",
+            "subServices": [
+                {"name": "Программы на macOS можете скачать на appstorrent.ru", "web": "https://appstorrent.ru", "but": "1"}
+            ]
+        }
+    ]
+}
