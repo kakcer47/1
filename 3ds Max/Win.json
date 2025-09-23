@@ -1,12 +1,6 @@
 {
     "services": [
         {
-            "name": "Помощь в установке",
-            "subServices": [
-                {"name": "Написать", "web": "https://t.me/Stylish_Antelope_Download", "but": "4"}
-            ]
-        },
-        {
             "name": "Установка",
             "subServices": [
                 {"name": "Видео инструкция", "web": "https://t.me/StylishAntelopeFiles/33", "but": "2"}
@@ -27,10 +21,7 @@
         {
             "name": "Дополнительно",
             "subServices": [
-                {"name": "Активатор Autodesk", "web": "https://www.dropbox.com/t/txl5qZldGrOFWgCJ", "but": "3"},
-                {"name": "Corona Render", "web": "https://claude.ai", "but": "3"},
-                {"name": "V-Ray", "web": "https://claude.ai", "but": "3"},
-                {"name": "Плагины", "web": "https://claude.ai", "but": "3"}
+                {"name": "Активатор Autodesk", "web": "https://t.me/StylishAntelopeFiles/155", "but": "3"}
             ]
         }
     ]
