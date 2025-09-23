@@ -334,7 +334,7 @@
             overflow-y: auto;
             padding: 1.5rem;
             color: var(--color-text-secondary);
-            max-height: calc(80vh - 80px);
+            max-height: calc(100vh - 80px);
         }
         
         .modal__content::-webkit-scrollbar {
@@ -886,14 +886,7 @@
         };
 
         function openTelegramLink(url) {
-            // Для файлов из каналов показываем красивое уведомление
-            if (url.includes('StylishAntelopeFiles') || url.includes('dropbox.com')) {
-                showFileInfo(url);
-                return;
-            }
-            
-            // Для остальных ссылок - прямой переход
-            window.location.href = url;
+            window.open(url, '_blank');
         }
 
         // Start the app when DOM is ready
