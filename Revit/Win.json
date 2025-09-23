@@ -1,37 +1,27 @@
 {
     "services": [
         {
-            "name": "Помощь в установке",
-            "subServices": [
-                {"name": "Написать", "web": "https://t.me/Stylish_Antelope_Download", "but": "4"}
-            ]
-        },
-        {
             "name": "Установка",
             "subServices": [
-                {"name": "Видео инструкция", "web": "https://claude.ai", "but": "2"}
+                {"name": "Видео инструкция", "web": "https://t.me/StylishAntelopeFiles/33", "but": "2"}
             ]
         },
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "Revit 2026.2", "web": "https://www.dropbox.com/t/dY4EnSVx44UCjAUS", "but": "1"},
-                {"name": "Revit 2025.4.3", "web": "https://www.dropbox.com/t/him1flfTfJpG3VPc", "but": "1"},
-                {"name": "Revit 2024.3.3", "web": "https://www.dropbox.com/t/ynWQFaArVFGknkuR", "but": "1"},
-                {"name": "Revit 2023.1.8", "web": "https://www.dropbox.com/t/tpoETZTRevhPEahO", "but": "1"},
-                {"name": "Revit 2022.1.8", "web": "https://www.dropbox.com/t/qcDwAm4lYVBbKLo4", "but": "1"},
-                {"name": "3ds Max 2021.3.17", "web": "https://www.dropbox.com/t/PFAz7nIdBpkfHGLa", "but": "1"},
-                {"name": "3ds Max 2020.3.8", "web": "https://www.dropbox.com/t/OnZnWgiTUHxjv8qS", "but": "1"},
-                {"name": "3ds Max 2019.1", "web": "https://www.dropbox.com/t/7rdLCexDWKB7OlE8", "but": "1"}
+                {"name": "Revit 2026", "web": "https://t.me/StylishAntelopeFiles/72", "but": "1"},
+                {"name": "Revit 2025", "web": "https://t.me/StylishAntelopeFiles/71", "but": "1"},
+                {"name": "Revit 2024", "web": "https://t.me/StylishAntelopeFiles/70", "but": "1"},
+                {"name": "Revit 2023", "web": "https://t.me/StylishAntelopeFiles/69", "but": "1"},
+                {"name": "Revit 2022", "web": "https://t.me/StylishAntelopeFiles/68", "but": "1"},
+                {"name": "Revit 2021", "web": "https://t.me/StylishAntelopeFiles/67", "but": "1"},
+                {"name": "Revit 2020", "web": "https://t.me/StylishAntelopeFiles/66", "but": "1"}
             ]
         },
         {
             "name": "Дополнительно",
             "subServices": [
-                {"name": "Активатор Autodesk", "web": "https://www.dropbox.com/t/txl5qZldGrOFWgCJ", "but": "3"},
-                {"name": "Corona Render", "web": "https://claude.ai", "but": "3"},
-                {"name": "V-Ray", "web": "https://claude.ai", "but": "3"},
-                {"name": "Плагины", "web": "https://claude.ai", "but": "3"}
+                {"name": "Активатор Autodesk", "web": "https://t.me/StylishAntelopeFiles/155", "but": "3"}
             ]
         }
     ]
