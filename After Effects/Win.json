@@ -1,38 +1,21 @@
 {
     "services": [
         {
-            "name": "Видео инструкция",
+            "name": "Установка",
             "subServices": [
-                {"name": "Смотреть", "web": "https://claude.ai", "but": "0"}
+                {"name": "Видео инструкция", "web": "https://t.me/StylishAntelopeFiles/7", "but": "2"}
             ]
         },
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "3ds Max 2026.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2025.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2024.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2023.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2022.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2021.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2020.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2019.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2018.5", "web": "https://claude.ai", "but": "1"}
+                {"name": "After Effects 2025", "web": "https://t.me/StylishAntelopeFiles/14", "but": "1"}
             ]
         },
         {
             "name": "Дополнительно",
             "subServices": [
-                {"name": "Активатор Autodesk", "web": "https://claude.ai", "but": "1"},
-                {"name": "Corona Render", "web": "https://claude.ai", "but": "1"},
-                {"name": "V-Ray", "web": "https://claude.ai", "but": "1"},
-                {"name": "Плагины", "web": "https://claude.ai", "but": "1"}
-            ]
-        },
-        {
-            "name": "Помощь в установке",
-            "subServices": [
-                {"name": "Написать", "web": "https://claude.ai", "but": "0"}
+                {"name": "Активатор Adobe GenP", "web": "https://t.me/StylishAntelopeFiles/32", "but": "3"}
             ]
         }
     ]
