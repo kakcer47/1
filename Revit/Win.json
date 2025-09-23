@@ -10,12 +10,12 @@
             "name": "Скачать",
             "subServices": [
                 {"name": "Revit 2026", "web": "https://t.me/StylishAntelopeFiles/72", "but": "1"},
-                {"name": "Revit 2025", "web": "https://t.me/StylishAntelopeFiles/71", "but": "1"},
-                {"name": "Revit 2024", "web": "https://t.me/StylishAntelopeFiles/70", "but": "1"},
-                {"name": "Revit 2023", "web": "https://t.me/StylishAntelopeFiles/69", "but": "1"},
-                {"name": "Revit 2022", "web": "https://t.me/StylishAntelopeFiles/68", "but": "1"},
-                {"name": "Revit 2021", "web": "https://t.me/StylishAntelopeFiles/67", "but": "1"},
-                {"name": "Revit 2020", "web": "https://t.me/StylishAntelopeFiles/66", "but": "1"}
+                {"name": "Revit 2025", "web": "https://t.me/StylishAntelopeFiles/69", "but": "1"},
+                {"name": "Revit 2024", "web": "https://t.me/StylishAntelopeFiles/63", "but": "1"},
+                {"name": "Revit 2023", "web": "https://t.me/StylishAntelopeFiles/60", "but": "1"},
+                {"name": "Revit 2022", "web": "https://t.me/StylishAntelopeFiles/57", "but": "1"},
+                {"name": "Revit 2021", "web": "https://t.me/StylishAntelopeFiles/52", "but": "1"},
+                {"name": "Revit 2020", "web": "https://t.me/StylishAntelopeFiles/48", "but": "1"}
             ]
         },
         {
