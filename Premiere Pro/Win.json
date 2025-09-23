@@ -1,27 +1,21 @@
 {
     "services": [
         {
-            "name": "Помощь в установке",
-            "subServices": [
-                {"name": "Написать", "web": "https://t.me/Stylish_Antelope_Download", "but": "4"}
-            ]
-        },
-        {
             "name": "Установка",
             "subServices": [
-                {"name": "Видео инструкция", "web": "https://claude.ai", "but": "2"}
+                {"name": "Видео инструкция", "web": "https://t.me/StylishAntelopeFiles/7", "but": "2"}
             ]
         },
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "Adobe Premiere Pro 2025 v25.4", "web": "https://www.dropbox.com/t/KhuclY38auRcVMMw", "but": "1"}
+                {"name": "Premiere Pro 2025", "web": "https://t.me/StylishAntelopeFiles/15", "but": "1"}
             ]
         },
         {
             "name": "Дополнительно",
             "subServices": [
-                {"name": "Активатор Adobe", "web": "https://www.dropbox.com/t/e3hGf9xktbpiwDCZ", "but": "3"}
+                {"name": "Активатор Adobe GenP", "web": "https://t.me/StylishAntelopeFiles/32", "but": "3"}
             ]
         }
     ]
