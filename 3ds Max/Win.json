@@ -9,13 +9,13 @@
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "3ds Max 2026.2", "web": "https://t.me/StylishAntelopeFiles/46", "but": "1"},
-                {"name": "3ds Max 2025.3.2", "web": "https://t.me/StylishAntelopeFiles/44", "but": "1"},
-                {"name": "3ds Max 2024.2.9", "web": "https://t.me/StylishAntelopeFiles/42", "but": "1"},
-                {"name": "3ds Max 2023.3.9", "web": "https://t.me/StylishAntelopeFiles/40", "but": "1"},
-                {"name": "3ds Max 2022.3.13", "web": "https://t.me/StylishAntelopeFiles/38", "but": "1"},
-                {"name": "3ds Max 2021.3.17", "web": "https://t.me/StylishAntelopeFiles/36", "but": "1"},
-                {"name": "3ds Max 2020.3.8", "web": "https://t.me/StylishAntelopeFiles/34", "but": "1"}
+                {"name": "3ds Max 2026", "web": "https://t.me/StylishAntelopeFiles/46", "but": "1"},
+                {"name": "3ds Max 2025", "web": "https://t.me/StylishAntelopeFiles/44", "but": "1"},
+                {"name": "3ds Max 2024", "web": "https://t.me/StylishAntelopeFiles/42", "but": "1"},
+                {"name": "3ds Max 2023", "web": "https://t.me/StylishAntelopeFiles/40", "but": "1"},
+                {"name": "3ds Max 2022", "web": "https://t.me/StylishAntelopeFiles/38", "but": "1"},
+                {"name": "3ds Max 2021", "web": "https://t.me/StylishAntelopeFiles/36", "but": "1"},
+                {"name": "3ds Max 2020", "web": "https://t.me/StylishAntelopeFiles/34", "but": "1"}
             ]
         },
         {
