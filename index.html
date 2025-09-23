@@ -263,7 +263,7 @@
             left: 0;
             right: 0;
             width: 100%;
-            max-height: 80vh;
+            max-height: 100vh;
             border-radius: 0.5rem 0.5rem 0 0;
             box-shadow: var(--shadow-modal);
             transform: translateY(100%);
@@ -695,7 +695,7 @@
                 actionButtons.forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        this.handleCategoryClick(category, btn.dataset.platform);
+                        UIRenderer.handleCategoryClick(category, btn.dataset.platform);
                     });
                 });
 
