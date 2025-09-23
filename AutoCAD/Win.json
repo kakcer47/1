@@ -1,38 +1,27 @@
 {
     "services": [
         {
-            "name": "Видео инструкция",
+            "name": "Установка",
             "subServices": [
-                {"name": "Смотреть", "web": "https://claude.ai", "but": "0"}
+                {"name": "Видео инструкция", "web": "https://t.me/StylishAntelopeFiles/33", "but": "2"}
             ]
         },
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "3ds Max 2026.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2025.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2024.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2023.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2022.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2021.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2020.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2019.5", "web": "https://claude.ai", "but": "1"},
-                {"name": "3ds Max 2018.5", "web": "https://claude.ai", "but": "1"}
+                {"name": "AutoCAD 2026", "web": "https://t.me/StylishAntelopeFiles/81", "but": "1"},
+                {"name": "AutoCAD 2025", "web": "https://t.me/StylishAntelopeFiles/80", "but": "1"},
+                {"name": "AutoCAD 2024", "web": "https://t.me/StylishAntelopeFiles/79", "but": "1"},
+                {"name": "AutoCAD 2023", "web": "https://t.me/StylishAntelopeFiles/78", "but": "1"},
+                {"name": "AutoCAD 2022", "web": "https://t.me/StylishAntelopeFiles/77", "but": "1"},
+                {"name": "AutoCAD 2021", "web": "https://t.me/StylishAntelopeFiles/76", "but": "1"},
+                {"name": "AutoCAD 2020", "web": "https://t.me/StylishAntelopeFiles/75", "but": "1"}
             ]
         },
         {
             "name": "Дополнительно",
             "subServices": [
-                {"name": "Активатор Autodesk", "web": "https://claude.ai", "but": "1"},
-                {"name": "Corona Render", "web": "https://claude.ai", "but": "1"},
-                {"name": "V-Ray", "web": "https://claude.ai", "but": "1"},
-                {"name": "Плагины", "web": "https://claude.ai", "but": "1"}
-            ]
-        },
-        {
-            "name": "Помощь в установке",
-            "subServices": [
-                {"name": "Написать", "web": "https://claude.ai", "but": "0"}
+                {"name": "Активатор Autodesk", "web": "https://t.me/StylishAntelopeFiles/155", "but": "3"}
             ]
         }
     ]
