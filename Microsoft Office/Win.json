@@ -3,7 +3,7 @@
         {
             "name": "Установка",
             "subServices": [
-                {"name": "Официальный установщик и ключ", "web": "https://lomar-key.com/catalog", "but": "2"}
+                {"name": "Официальный установщик и ключ", "web": "https://lomar-key.com/catalog", "but": "4"}
             ]
         }
     ]
