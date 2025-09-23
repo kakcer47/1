@@ -9,13 +9,10 @@
         {
             "name": "Скачать",
             "subServices": [
-                {"name": "3ds Max 2026", "web": "https://t.me/StylishAntelopeFiles/46", "but": "1"},
-                {"name": "3ds Max 2025", "web": "https://t.me/StylishAntelopeFiles/44", "but": "1"},
-                {"name": "3ds Max 2024", "web": "https://t.me/StylishAntelopeFiles/42", "but": "1"},
-                {"name": "3ds Max 2023", "web": "https://t.me/StylishAntelopeFiles/40", "but": "1"},
-                {"name": "3ds Max 2022", "web": "https://t.me/StylishAntelopeFiles/38", "but": "1"},
-                {"name": "3ds Max 2021", "web": "https://t.me/StylishAntelopeFiles/36", "but": "1"},
-                {"name": "3ds Max 2020", "web": "https://t.me/StylishAntelopeFiles/34", "but": "1"}
+                {"name": "Alias AutoStudio 2026", "web": "https://t.me/StylishAntelopeFiles/136", "but": "1"},
+                {"name": "Alias AutoStudio 2025", "web": "https://t.me/StylishAntelopeFiles/134", "but": "1"},
+                {"name": "Alias AutoStudio 2024", "web": "https://t.me/StylishAntelopeFiles/132", "but": "1"},
+                {"name": "Alias AutoStudio 2023", "web": "https://t.me/StylishAntelopeFiles/130", "but": "1"}
             ]
         },
         {
