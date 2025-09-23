@@ -1,0 +1,22 @@
+{
+    "services": [
+        {
+            "name": "Установка",
+            "subServices": [
+                {"name": "Видео инструкция", "web": "https://t.me/StylishAntelopeFiles/7", "but": "2"}
+            ]
+        },
+        {
+            "name": "Скачать",
+            "subServices": [
+                {"name": "Illustrator 2025", "web": "https://t.me/StylishAntelopeFiles/13", "but": "1"}
+            ]
+        },
+        {
+            "name": "Дополнительно",
+            "subServices": [
+                {"name": "Активатор Adobe GenP", "web": "https://t.me/StylishAntelopeFiles/32", "but": "3"}
+            ]
+        }
+    ]
+}
